@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_sections_predefined_sections",
+  "info": {
+    "name": "Predefined section",
+    "icon": "paint-brush",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "predefinedSection": {
+      "type": "enumeration",
+      "enum": ["cta"],
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "collectionName": "components_sections_section_options",
+  "info": {
+    "name": "Section options",
+    "icon": "blender",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "container": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "alignment": {
+      "type": "enumeration",
+      "enum": ["Left", "Right", "Centre"],
+      "default": "Left",
+      "required": true
+    },
+    "style": {
+      "type": "enumeration",
+      "enum": [
+        "default",
+        "primary",
+        "secondary",
+        "white",
+        "black",
+        "lightGray",
+        "mediumGray",
+        "darkGray",
+        "gradient"
+      ],
+      "default": "default"
+    }
+  }
+}

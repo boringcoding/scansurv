@@ -1,0 +1,47 @@
+{
+  "collectionName": "components_elements_buttons",
+  "info": {
+    "name": "Button",
+    "icon": "arrow-down",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": ["URL", "Email", "Phone", "Mobile", "ContactFormPopUp"],
+      "default": "URL"
+    },
+    "variant": {
+      "type": "enumeration",
+      "enum": [
+        "default",
+        "primary",
+        "secondary",
+        "tertiary",
+        "quaternary",
+        "white",
+        "black",
+        "bg",
+        "bgAlt",
+        "gradient",
+        "outlinePrimary",
+        "outlineSecondary",
+        "outlineTertiary",
+        "outlinequaternary",
+        "outlineWhite",
+        "outlineBlack",
+        "outlineBg",
+        "outlineBgAlt",
+        "outlineGradient"
+      ],
+      "default": "default"
+    },
+    "content": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string"
+    }
+  }
+}

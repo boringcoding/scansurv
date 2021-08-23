@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "partials",
+  "info": {
+    "name": "Partial",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "partial": {
+      "type": "dynamiczone",
+      "components": ["sections.section", "sections.grid"]
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_sections_grid_options",
+  "info": {
+    "name": "Grid options",
+    "icon": "blender",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "columns": {
+      "type": "integer",
+      "required": true,
+      "default": 2,
+      "max": 6,
+      "min": 1
+    },
+    "slider": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "theme": {
+      "type": "enumeration",
+      "enum": ["Dark", "Light", "None"],
+      "default": "Dark",
+      "required": true
+    }
+  }
+}

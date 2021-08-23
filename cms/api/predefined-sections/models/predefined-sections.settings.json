@@ -1,0 +1,21 @@
+{
+  "kind": "singleType",
+  "collectionName": "predefined_sections",
+  "info": {
+    "name": "Predefined sections",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "cta": {
+      "type": "component",
+      "repeatable": false,
+      "component": "partials.cta"
+    }
+  }
+}

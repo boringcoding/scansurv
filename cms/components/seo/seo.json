@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_seo_seos",
+  "info": {
+    "name": "SEO",
+    "icon": "bookmark",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "titleTag": {
+      "type": "string",
+      "maxLength": 60,
+      "minLength": 30
+    },
+    "metaDescription": {
+      "type": "text",
+      "maxLength": 160,
+      "minLength": 50
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_sections_partials",
+  "info": {
+    "name": "Partial",
+    "icon": "database",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "partial": {
+      "model": "partial"
+    }
+  }
+}

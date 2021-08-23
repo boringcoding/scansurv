@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "form_submissions",
+  "info": {
+    "name": "Form submissions",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "formName": {
+      "type": "string"
+    },
+    "data": {
+      "type": "json"
+    }
+  }
+}

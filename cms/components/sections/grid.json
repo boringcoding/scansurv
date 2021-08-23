@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_sections_grids",
+  "info": {
+    "name": "Grid",
+    "icon": "grip-horizontal"
+  },
+  "options": {},
+  "attributes": {
+    "sectionOptions": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.section-options"
+    },
+    "heading": {
+      "type": "string"
+    },
+    "subHeading": {
+      "type": "string"
+    },
+    "content": {
+      "type": "richtext"
+    },
+    "gridOptions": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.grid-options"
+    },
+    "gridItem": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.grid-item"
+    }
+  }
+}

@@ -25,16 +25,14 @@ export async function getStaticPaths() {
 
   // need to loop through all the pages and match parents before creating the routes
   const pagesWithPaths = await Promise.all(
-    allPages.pages.map(
-      async page => {
-        // covers a couple of levels. Is there a better way?
-        page.parent &&
-          (await getPageParentById(page.parent.id).then(data => {
-            page.grandparent = data.page.parent
-          }))
-        return page
-      }
-    )
+    allPages.pages.map(async page => {
+      // covers a couple of levels. Is there a better way?
+      page.parent &&
+        (await getPageParentById(page.parent.id).then(data => {
+          page.grandparent = data.page.parent
+        }))
+      return page
+    })
   )
 
   const paths =

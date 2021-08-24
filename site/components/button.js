@@ -9,6 +9,7 @@ import {
   faEnvelope,
 } from "@fortawesome/pro-solid-svg-icons"
 import dynamic from "next/dynamic"
+import ProjectForm from "./forms/projectForm"
 
 import GD from "@/data/global-data.json"
 
@@ -23,15 +24,13 @@ const baseOutlineStyles = ``
 
 // set base styles for all buttons
 const Btn = styled.a`
-  ${tw`text-sm border-2 inline-block mr-1 mb-1 py-2 px-3 font-serif font-bold transition-all ease-in-out duration-500 cursor-pointer outline-none hocus:(outline-none) disabled:(opacity-50 cursor-not-allowed pointer-events-none)`}
+  ${tw`tracking-widest uppercase border-2 inline-block mr-1 mb-1 py-2 px-3 font-serif font-bold transition-all ease-in-out duration-500 cursor-pointer outline-none hocus:(outline-none) disabled:(opacity-50 cursor-not-allowed pointer-events-none)`}
 
   ${props =>
     /**
      * Background buttons
      */
-    props.variant === "secondary"
-      ? tw`${baseStyles} bg-secondary border-secondary text-white hover:(text-white)`
-      : props.variant === "white"
+    props.variant === "white"
       ? tw`${baseStyles} bg-white border-white text-black hover:(text-black)`
       : props.variant === "black"
       ? tw`${baseStyles} bg-black border-black text-white hover:(text-white)`
@@ -42,8 +41,6 @@ const Btn = styled.a`
        */
       props.variant === "outlinePrimary"
       ? tw`${baseOutlineStyles}  border-primary hover:(bg-primary text-white)`
-      : props.variant === "outlineSecondary"
-      ? tw`${baseOutlineStyles} border-secondary hover:(bg-secondary text-white)`
       : props.variant === "outlineWhite"
       ? tw`${baseOutlineStyles} border-white hover:(bg-white text-black)`
       : props.variant === "outlineBlack"
@@ -60,11 +57,12 @@ const Btn = styled.a`
  * @param href      Defaults to null
  *
  * Types from strapi:
- * URL
- * Email
- * Phone
- * Mobile
- * ContactFormPopUp
+  "URL",
+  "Email",
+  "Phone",
+  "Mobile",
+  "ContactFormPopUp",
+  "ProjectFormPopUp"
  */
 
 export const Button = ({
@@ -156,6 +154,28 @@ export const Button = ({
           setState={() => setShowModal(prevState => !prevState)}
         >
           <ContactForm />
+        </Modal>
+      </>
+    )
+  }
+
+  if (type == "ProjectFormPopUp") {
+    return (
+      <>
+        <Btn
+          as="button"
+          onClick={() => setShowModal(true)}
+          variant={variant}
+          {...props}
+        >
+          {children}
+        </Btn>
+        <Modal
+          title=""
+          getState={showModal}
+          setState={() => setShowModal(prevState => !prevState)}
+        >
+          <ProjectForm />
         </Modal>
       </>
     )

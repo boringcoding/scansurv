@@ -12,7 +12,7 @@ export default function Error404() {
     <>
       <SEO
         pageTitle="404: Page not found"
-        titleTag={`404 | Plumber Leeds | ${process.env.NEXT_PUBLIC_SITE_NAME}`}
+        titleTag={`404 | ${process.env.NEXT_PUBLIC_SITE_NAME}`}
         metaDescription="404"
         bodyClass="errorPage"
       />
@@ -22,7 +22,7 @@ export default function Error404() {
           <Container tw="text-center">
             <h1>404</h1>
             <p>Oops, page not found</p>
-            <Button variant="outlineGradient" href="/" title="Link to homepage">
+            <Button variant="primary" href="/" title="Link to homepage">
               Go home
             </Button>
           </Container>

@@ -47,7 +47,7 @@ const Dropdown = ({ label, items, ...other }) => {
     >
       <NavLink as="button">
         {label}
-        <FontAwesomeIcon icon={faCaretDown} tw="ml-2" />
+        <FontAwesomeIcon icon={faCaretDown} tw="ml-2 -mt-1" />
       </NavLink>
 
       <Transition

@@ -1,7 +1,7 @@
 import tw from "twin.macro"
 
 const containerVariants = {
-  container: tw`container`,
+  container: tw`container relative`,
   full: tw`mx-auto px-5`,
 }
 

@@ -9,7 +9,7 @@ import { faTimes } from "@fortawesome/pro-solid-svg-icons"
 import useHasMounted from "@/utils/mounted"
 
 const ModalWrapper = styled.div`
-  ${tw`fixed top-0 left-0 w-full h-full flex justify-center items-center z-50`}
+  ${tw`fixed top-0 left-0 w-full h-full flex justify-center items-center z-50 text-gray-600`}
 `
 
 const ModalOverlay = styled.div`
@@ -21,7 +21,7 @@ const ModalBody = styled.div`
 `
 
 const ModalEl = styled.div`
-  ${tw`relative bg-white bg-opacity-100 max-w-full max-h-full overflow-y-scroll p-3 mdmax:minWidth[75vw] mdmin:maxWidth[600px]`}
+  ${tw`relative bg-white bg-opacity-100 max-w-full max-h-full overflow-y-scroll p-3 mdmax:minWidth[75vw] mdmin:(minWidth[60%] maxWidth[600px])`}
 `
 
 const CloseBtn = styled.button.attrs({

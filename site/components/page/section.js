@@ -8,12 +8,12 @@ import Accordion from "@/components/accordion"
 import { Btns } from "@/components/button"
 import Imgs from "./components/imgs"
 
-const BackgroundImageWrapper = tw.div`absolute top-0 left-0 w-full h-full zIndex[-1]`
+const BackgroundImageWrapper = tw.div`absolute top-0 left-0 w-full h-full`
 
 export const SectionSc = styled.section(props => [
   tw`py-6 relative overflow-hidden`,
   props.align === "Right"
-    ? tw`mdmin:text-right`
+    ? tw``
     : props.align === "Left"
     ? tw`mdmin:text-left`
     : props.align === "Centre"
@@ -33,21 +33,20 @@ export const SectionSc = styled.section(props => [
   props.sectionStyle === "black" && tw`bg-black`,
   props.sectionStyle === "white" && tw`bg-white`,
   props.sectionStyle === "primary" && tw`bg-primary`,
-  props.sectionStyle === "secondary" && tw`bg-secondary`,
-  props.sectionStyle === "gradient" && tw`gradient`,
 ])
 
 export const RowSc = styled.div(props => [
-  tw`flex flex-wrap w-full`,
+  tw`flex flex-wrap w-full items-stretch`,
   props.align == "Right" ? tw`flex-row-reverse` : tw`flex-row`,
 ])
 
-const ImageSc = styled.div(`
-  ${props => [
-    props.align === "Left" && tw`mdmin:pl-3`,
-    props.align === "Right" && tw`mdmin:pr-3`,
-    props.align === "Center" && tw`mdmin:px-3`,
-  ]}`)
+const ImageSc = styled.div(props => [
+  props.align === "Right"
+    ? tw`mdmin:pr-7`
+    : props.align === "Center"
+    ? tw`mdmin:px-5`
+    : tw`mdmin:pl-7`,
+])
 
 const Section = props => {
   const sectionOptions = props.content?.sectionOptions
@@ -88,17 +87,16 @@ const Section = props => {
               <Btns
                 buttons={props.content.button}
                 evenDefaultVariant="primary"
-                oddDefaultVariant="secondary"
+                oddDefaultVariant="outlinePrimary"
               />
             )}
           </div>
           {!props.content.backgroundImage && props.content.image[0] && (
-            <div tw="mdmin:(w-1/2 pl-5) mdmax:(w-full)">
+            <div tw="mdmin:(w-1/2) mdmax:(w-full)">
               <ImageSc align={sectionOptions?.alignment}>
                 <Imgs image={props.content.image} />
               </ImageSc>
-
-              {props.content.accordion && (
+              {props.content.accordion.length >= 1 && (
                 <Accordion {...props.content.accordion} />
               )}
             </div>

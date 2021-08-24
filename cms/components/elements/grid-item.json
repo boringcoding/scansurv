@@ -7,16 +7,17 @@
   },
   "options": {},
   "attributes": {
+    "link": {
+      "type": "string"
+    },
     "icon": {
       "type": "string"
     },
     "image": {
-      "collection": "file",
-      "via": "related",
-      "allowedTypes": ["images"],
-      "plugin": "upload",
-      "required": false,
-      "pluginOptions": {}
+      "type": "component",
+      "repeatable": false,
+      "component": "elements.image",
+      "required": false
     },
     "heading": {
       "type": "string"

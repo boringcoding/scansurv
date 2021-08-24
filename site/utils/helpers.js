@@ -85,3 +85,42 @@ export const figureOutHref = (internal, external = null) => {
     return external
   } else return "/"
 }
+
+/**
+ * Convert bytes to size
+ *
+ * @param {int} bytes
+ * @see https://gist.github.com/lanqy/5193417
+ */
+export const bytesToSize = bytes => {
+  const sizes = ["Bytes", "KB", "MB", "GB", "TB"]
+  if (bytes === 0) return "n/a"
+  const i = parseInt(Math.floor(Math.log(Math.abs(bytes)) / Math.log(1024)), 10)
+  if (i === 0) return `${bytes} ${sizes[i]}`
+  return `${(bytes / 1024 ** i).toFixed(1)} ${sizes[i]}`
+}
+
+/**
+ * Slugify
+ *
+ * @param {string} string
+ * @see https://gist.github.com/hagemann/382adfc57adbd5af078dc93feef01fe1
+ */
+export const slugify = string => {
+  const a =
+    "àáâäæãåāăąçćčđďèéêëēėęěğǵḧîïíīįìıİłḿñńǹňôöòóœøōõőṕŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż·/_,:;"
+  const b =
+    "aaaaaaaaaacccddeeeeeeeegghiiiiiiiilmnnnnoooooooooprrsssssttuuuuuuuuuwxyyzzz------"
+  const p = new RegExp(a.split("").join("|"), "g")
+
+  return string
+    .toString()
+    .toLowerCase()
+    .replace(/\s+/g, "-") // Replace spaces with -
+    .replace(p, c => b.charAt(a.indexOf(c))) // Replace special characters
+    .replace(/&/g, "-and-") // Replace & with 'and'
+    .replace(/[^\w\-]+/g, "") // Remove all non-word characters
+    .replace(/\-\-+/g, "-") // Replace multiple - with single -
+    .replace(/^-+/, "") // Trim - from start of text
+    .replace(/-+$/, "") // Trim - from end of text
+}

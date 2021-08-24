@@ -18,7 +18,7 @@ const SliderWrapper = styled.div`
     height: auto;
   }
 `
-const SliderImageWrapper = tw.div`absolute top-0 left-0 h-full w-full`
+const SliderImageWrapper = tw.div`absolute top-0 left-0 h-full w-full filter grayscale`
 const SliderContentWrapper = tw.div`z-10 relative flex flex-col justify-center minHeight[500px] h-full`
 const SliderInner = styled.div(({ slide }) => [
   css`
@@ -54,10 +54,14 @@ const Content = slide => (
         <SliderInner {...{ slide }}>
           <div>
             {slide.heading && (
-              <h1 tw="text-white text-headingXl">{slide.heading}</h1>
+              <h1 tw="text-headingXl text-primary text-shadow">
+                {slide.heading}
+              </h1>
             )}
             {slide.subheading && (
-              <h2 tw="text-primary text-headingXl -mt-3">{slide.subheading}</h2>
+              <h2 tw="text-white text-headingXl text-shadow -mt-3">
+                {slide.subheading}
+              </h2>
             )}
             {slide.content && (
               <div
@@ -137,14 +141,12 @@ export default function Slider(props) {
                     <SliderInner {...{ slide }}>
                       <div>
                         {slide.heading && (
-                          <h1 tw="text-white text-headingXl">
+                          <h1 tw="text-primary tracking-widest text-shadow">
                             {slide.heading}
                           </h1>
                         )}
                         {slide.subheading && (
-                          <h2 tw="text-primary text-headingXl -mt-3">
-                            {slide.subheading}
-                          </h2>
+                          <h2 tw="text-primary -mt-3">{slide.subheading}</h2>
                         )}
                         {slide.content && (
                           <div

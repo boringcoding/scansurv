@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faExternalLinkAlt } from "@fortawesome/pro-solid-svg-icons"
 import Link from "next/link"
 
-const A = tw.a`font-serif text-primary hocus:(text-secondary underline)`
+const A = tw.a`font-serif text-primary hocus:(text-primary-light underline)`
 
 /**
  * Href - Useful for when parsing from CMS as checks if link is internal or external etc.

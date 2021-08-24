@@ -23,13 +23,11 @@
       "enum": [
         "default",
         "primary",
-        "secondary",
         "white",
         "black",
         "lightGray",
         "mediumGray",
-        "darkGray",
-        "gradient"
+        "darkGray"
       ],
       "default": "default"
     }

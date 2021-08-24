@@ -5,7 +5,7 @@ import { gsap } from "@gsap/shockingly"
 const Ham = styled.div(
   () =>
     css`
-      ${tw`mdmin:hidden flex items-center justify-center relative cursor-pointer ml-3 bg-primary hocus:(bg-secondary) transition duration-300 z-50`}
+      ${tw`mdmin:hidden flex items-center justify-center relative cursor-pointer ml-3 bg-primary hocus:(bg-black) transition duration-300 z-50`}
       width: 75px;
 
       & span {

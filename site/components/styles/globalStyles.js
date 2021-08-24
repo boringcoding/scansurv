@@ -8,8 +8,14 @@ const CustomStyles = createGlobalStyle`
 // Add fa css @see https://github.com/FortAwesome/react-fontawesome/issues/284
 ${dom.css()}
 
+.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+  ::placeholder {
+    ${tw`text-sm`}
+  }
+
   ::selection {
-    ${tw`bg-secondary text-primary`}
+    ${tw`bg-black text-primary`}
   }
 
   .grecaptcha-badge {
@@ -35,7 +41,9 @@ ${dom.css()}
   }
 
   body {
-   ${tw`transition-all ease-in-out duration-300 font-light text-base text-gray-600 max-w-full first:mt-0 last:mb-0`}
+   ${tw`transition-all ease-in-out duration-300 font-light text-base text-white max-w-full first:mt-0 last:mb-0`}
+   background-color: #000000;
+   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%233a3a3a' fill-opacity='0.4'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
 
   p {
@@ -66,7 +74,7 @@ ${dom.css()}
   }
 
   h1, h2, h3, h4, h5, h6 {
-    ${tw`font-serif text-secondary font-bold mt-0 mb-3`}
+    ${tw`font-serif text-primary font-bold mt-0 mb-3 uppercase`}
   }
 
   h1 {
@@ -110,21 +118,6 @@ ${dom.css()}
     ${tw`my-0`}
   }
 
-  pre {
-    ${tw`text-gray-200 bg-gray-800 overflow-x-auto text-sm my-4 rounded px-3 py-2`}
-  }
-
-  code {
-    ${tw`bg-gradient-to-r from-secondary to-primary bg-clip-text text-sm font-normal after:(content["\`"]) before:(content["\`"])`}
-    -webkit-text-fill-color: #0000;
-    overflow-wrap: break-word;
-  }
-
-  pre code {
-    ${tw`bg-transparent border-0 rounded-none p-0 font-normal before:(content[none]) after:(content[none])`}
-    -webkit-text-fill-color: initial;
-  }
-
   video {
     ${tw`my-4`}
   }
@@ -163,7 +156,7 @@ ${dom.css()}
 }
 
 #nprogress .bar {
-  ${tw`bg-primary mdmax:bg-secondary fixed top-0 left-0`}
+  ${tw`bg-primary fixed top-0 left-0`}
   z-index: 1031;
   width: 100%;
   height: 2px;
@@ -189,7 +182,7 @@ ${dom.css()}
 }
 
 #nprogress .spinner-icon {
-  ${tw`border-2 rounded-full border-primary mdmax:border-secondary border-b-0 border-r-0`}
+  ${tw`border-2 rounded-full border-primary border-b-0 border-r-0`}
   width: 18px;
   height: 18px;
   animation: nprogress-spinner 400ms linear infinite;

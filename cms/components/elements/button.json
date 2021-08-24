@@ -9,7 +9,14 @@
   "attributes": {
     "type": {
       "type": "enumeration",
-      "enum": ["URL", "Email", "Phone", "Mobile", "ContactFormPopUp"],
+      "enum": [
+        "URL",
+        "Email",
+        "Phone",
+        "Mobile",
+        "ContactFormPopUp",
+        "ProjectFormPopUp"
+      ],
       "default": "URL"
     },
     "variant": {
@@ -17,23 +24,11 @@
       "enum": [
         "default",
         "primary",
-        "secondary",
-        "tertiary",
-        "quaternary",
         "white",
         "black",
-        "bg",
-        "bgAlt",
-        "gradient",
         "outlinePrimary",
-        "outlineSecondary",
-        "outlineTertiary",
-        "outlinequaternary",
         "outlineWhite",
-        "outlineBlack",
-        "outlineBg",
-        "outlineBgAlt",
-        "outlineGradient"
+        "outlineBlack"
       ],
       "default": "default"
     },

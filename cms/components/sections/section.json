@@ -33,17 +33,10 @@
       "component": "elements.button"
     },
     "image": {
-      "collection": "file",
-      "via": "related",
-      "allowedTypes": ["images"],
-      "plugin": "upload",
-      "required": false,
-      "pluginOptions": {}
-    },
-    "backgroundImage": {
-      "type": "boolean",
-      "default": false,
-      "required": true
+      "type": "component",
+      "repeatable": false,
+      "component": "elements.image",
+      "required": false
     }
   }
 }

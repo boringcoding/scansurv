@@ -8,7 +8,6 @@ import { faChevronLeft, faChevronRight } from "@fortawesome/pro-solid-svg-icons"
 
 import { Btns } from "@/components/button"
 import Container from "@/components/container"
-import Emergency24HourService from "../emergency24HourService"
 
 SwiperCore.use([Navigation, Autoplay])
 
@@ -18,8 +17,8 @@ const HeroWrapper = styled.div`
     height: 100%;
   }
 `
-const HeroImageWrapper = tw.div`minHeight[500px] absolute top-0 left-0 h-full w-full`
-const HeroContentWrapper = tw.div`z-10 relative flex flex-col justify-center minHeight[500px] h-full pointer-events-none before:(content absolute top-0 left-0 h-full w-full bg-gradient-to-r from-gray-700 to-transparent)`
+const HeroImageWrapper = tw.div`minHeight[500px] absolute top-0 left-0 h-full w-full filter grayscale`
+const HeroContentWrapper = tw.div`z-10 relative flex flex-col justify-center minHeight[500px] h-full pointer-events-none before:(content absolute top-0 left-0 h-full w-full)`
 const HeroInner = tw.div`pointer-events-auto py-6 z-10 relative text-white mdmin:maxWidth[70%] mdmax:pt-3`
 
 /**
@@ -88,7 +87,9 @@ const Hero = props => {
           <div tw="flex justify-between items-center mdmax:(flex-col-reverse items-start justify-center)">
             <HeroInner>
               {props.hero?.heading && (
-                <h1 tw="text-white block">{props.hero.heading}</h1>
+                <h1 tw="text-primary tracking-widest text-shadow block">
+                  {props.hero.heading}
+                </h1>
               )}
               {props.hero?.subHeading && (
                 <p tw="text-lg font-serif bg-primary p-2 inline-block text-white font-bold -mt-2">
@@ -111,7 +112,6 @@ const Hero = props => {
                 </div>
               )}
             </HeroInner>
-            <Emergency24HourService />
           </div>
         </Container>
       </HeroContentWrapper>

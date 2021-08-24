@@ -39,14 +39,14 @@ const gridColumnVariants = {
 }
 
 const gridItemVariants = {
-  dark: [tw`bg-secondary text-left`, gridDarkStyles, mutualgridStyles],
+  dark: [tw`bg-black text-left`, gridDarkStyles, mutualgridStyles],
   light: [tw`bg-white`, mutualgridStyles],
   none: [tw``, mutualgridStyles],
 }
 
 const variants = {
   grid: ({ variant = "2" }) => [
-    tw`grid gap-4 mdmax:grid-cols-1`,
+    tw`grid gap-2 mdmax:grid-cols-1`,
     gridColumnVariants[variant],
   ],
   gridItem: ({ variant = "dark" }) => [tw`p-3`, gridItemVariants[variant]],
@@ -84,7 +84,7 @@ const GridItem = props => {
         <Btns
           buttons={item.button}
           evenDefaultVariant="primary"
-          oddDefaultVariant="secondary"
+          oddDefaultVariant="outlinePrimary"
         />
       )}
     </GridItemEl>

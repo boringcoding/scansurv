@@ -22,11 +22,11 @@ const styles = {
   icon: ({ fixedWidthIcon }) => [fixedWidthIcon && tw`h-3 w-3! mr-3!`],
   item: ({ variant }) => [
     variant === "dark"
-      ? tw`text-black! hocus:(text-secondary!)`
+      ? tw`text-black!`
       : variant === "light"
-      ? tw`text-white! hocus:(text-secondary!)`
+      ? tw`text-white!`
       : variant === "plain"
-      ? tw`hocus:(text-secondary!)`
+      ? tw``
       : null,
   ],
 }

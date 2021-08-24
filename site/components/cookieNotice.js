@@ -34,11 +34,7 @@ const CookieNotice = () => {
         <p tw="mb-3 mt-0">
           This website uses cookies to ensure you get the best experience on our
           website. Read more in our{" "}
-          <Href
-            href="/privacy-policy"
-            title="Link to privacy policy"
-            tw="text-secondary"
-          >
+          <Href href="/privacy-policy" title="Link to privacy policy">
             Privacy policy
           </Href>
         </p>

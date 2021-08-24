@@ -2,6 +2,7 @@
 const defaultTheme = require("tailwindcss/defaultTheme")
 const plugin = require("tailwindcss/plugin")
 var Color = require("color")
+const colors = require("tailwindcss/colors")
 
 module.exports = {
   mode: "jit",
@@ -19,11 +20,6 @@ module.exports = {
         light: Color("#ff9a00").lighten(0.5).hex(),
         dark: Color("#ff9a00").darken(0.2).hex(),
       },
-      secondary: {
-        DEFAULT: "#1e3556",
-        light: Color("#1e3556").lighten(0.2).hex(),
-        dark: Color("#1e3556").darken(0.2).hex(),
-      },
       success: {
         DEFAULT: defaultTheme.colors.green[500],
         light: Color(defaultTheme.colors.green[500]).lighten(0.2).hex(),
@@ -36,7 +32,7 @@ module.exports = {
       },
       white: "#ffffff",
       black: "#000000",
-      gray: { ...defaultTheme.colors.gray },
+      gray: { ...colors.trueGray },
       transparent: "transparent",
       current: "currentColor",
     },
@@ -57,14 +53,14 @@ module.exports = {
       0: "0",
       1: "0.3rem",
       2: "0.6rem",
-      3: "1.2rem",
-      4: "1.8rem",
-      5: "2.4rem",
-      6: "3rem",
-      7: "3.6rem",
-      8: "4.2rem",
-      9: "5.4rem",
-      10: "7.2rem",
+      3: "1rem",
+      4: "1.5rem",
+      5: "2rem",
+      6: "2.5rem",
+      7: "3rem",
+      8: "4rem",
+      9: "5rem",
+      10: "7rem",
     },
 
     fontFamily: {
@@ -78,20 +74,20 @@ module.exports = {
      */
     fontSize: {
       xs: [".675rem", "1rem"],
-      sm: ["1rem", "1.6rem"],
-      base: ["1.125rem", "1.8rem"],
-      lg: ["1.5rem", "2.15rem"],
-      xl: ["1.75rem", "2.3rem"],
-      headingSm: ["2rem", "2.6rem"],
+      sm: [".8rem", "1.2rem"],
+      base: ["1rem", "1.5rem"],
+      lg: ["1.3rem", "1.8rem"],
+      xl: ["1.5rem", "2rem"],
+      headingSm: ["1.75rem", "2.25rem"],
       headingBase: ["2rem", "2.5rem"],
       headingLg: ["2.5rem", "3rem"],
-      headingXl: ["3rem", "3.5rem"],
+      headingXl: ["3.5rem", "4rem"],
     },
 
     fontWeight: {
       light: 300,
       normal: 400,
-      bold: 700,
+      bold: 600,
     },
 
     scale: {
@@ -115,11 +111,6 @@ module.exports = {
     extend: {
       gridTemplateColumns: {
         auto: "repeat(auto-fit,minmax(0,1fr))",
-      },
-      // add increased background size for gradient buttons
-      backgroundSize: {
-        "size-200": "200% 200%",
-        "size-300": "300% 300%",
       },
     },
   },

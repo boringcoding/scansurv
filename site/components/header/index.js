@@ -8,13 +8,13 @@ import { useRouter } from "next/router"
 
 const Dropdown = dynamic(() => import("./dropdown"))
 
-import { Mobile, Telephone } from "@/components/contactDetails"
+import { Email, Mobile, Telephone } from "@/components/contactDetails"
 import { NavItem, NavLink } from "@/components/header/@sc"
 import Hamburger from "@/components/header/hamburger"
 import Logo from "@/components/header/logo"
 
 import { useIsMdMin } from "@/utils/responsive"
-import Accreditations from "../accreditations"
+import { Button } from "../button"
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -33,8 +33,8 @@ const Header = () => {
       type: "menuItem",
     },
     {
-      href: "/about",
-      label: "About",
+      href: "/about-us",
+      label: "About Us",
       type: "menuItem",
     },
     {
@@ -42,37 +42,42 @@ const Header = () => {
       type: "dropdown",
       dropdown: [
         {
-          href: "/services/plumbing",
-          label: "Plumbing",
+          href: "/services/3d-laser-scanning",
+          label: "3D Laser Scanning",
           type: "menuItem",
         },
         {
-          href: "/services/repairs",
-          label: "Repairs",
+          href: "/services/360-photography",
+          label: "360° Photography",
           type: "menuItem",
         },
         {
-          href: "/services/emergency-plumber",
-          label: "Emergency plumber",
+          href: "/services/structural-surveys",
+          label: "Structural Surveys",
           type: "menuItem",
         },
         {
-          href: "/services/unblocking-drains",
-          label: "Unblocking drains",
+          href: "/services/measured-building-surveys",
+          label: "Measured Building Surveys",
           type: "menuItem",
         },
       ],
     },
     {
-      href: "/contact",
-      label: "Contact",
+      href: "/projects",
+      label: "Projects",
+      type: "menuItem",
+    },
+    {
+      href: "/contact-us",
+      label: "Contact Us",
       type: "menuItem",
     },
   ]
 
   return (
     <>
-      <header tw="relative z-40">
+      <header tw="relative z-40 bg-white border-b-4 border-primary">
         <div tw="container mdmax:(pr-0 pl-3 max-w-full items-stretch) flex justify-between items-center">
           <Link href="/">
             <a title={`${process.env.NEXT_PUBLIC_SITE_NAME} logo`}>
@@ -99,10 +104,11 @@ const Header = () => {
                 onExit={e => gsap.to(e, { y: 500, autoAlpha: 0 })}
                 timeout={300}
               >
-                <div tw="mdmin:(bg-secondary border-b-4 border-primary) flex mdmax:(flex-col items-center space-y-3 mt-3 border-t border-white border-opacity-10 pt-3) p-3 mdmin:(space-x-3)">
+                <div tw="mdmin:(bg-gray-700 border-b-4 border-primary) flex mdmax:(flex-col items-center space-y-3 mt-3 border-t border-white border-opacity-10 pt-3) p-2 mdmin:(space-x-3)">
                   <Mobile tw="text-sm font-bold hover:(text-primary!) text-white!" />
-                  <Telephone tw="text-sm font-bold hover:(text-primary!) text-white!" />
-                  <Accreditations size="small" />
+                  <Telephone tw="font-bold hover:(text-primary!) text-white!" />
+                  <Email tw="font-bold hover:(text-primary!) text-white!" />
+                  <Button type="ProjectFormPopUp">Project form</Button>
                 </div>
               </Transition>
               <nav tw="mdmax:(w-full)">

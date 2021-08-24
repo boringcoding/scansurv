@@ -73,7 +73,17 @@ const HomePage = ({ history: { push } }) => {
               <ul>
                 <li>
                   <P>
-                    Display accreditations with <code>[accreditations]</code>
+                    Displays the project form <code>[project_form]</code>
+                  </P>
+                </li>
+                <li>
+                  <P>
+                    Displays the contact form <code>[contact_form]</code>
+                  </P>
+                </li>
+                <li>
+                  <P>
+                    Displays the map <code>[map]</code>
                   </P>
                 </li>
               </ul>

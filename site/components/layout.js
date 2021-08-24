@@ -1,7 +1,6 @@
-// import CookieNotice from "@/components/cookieNotice"
+import CookieNotice from "@/components/cookieNotice"
 import Footer from "@/components/footer"
 import Header from "@/components/header"
-import CallButton from "@/components/callButton"
 
 const Layout = ({ children }) => {
   return (
@@ -10,8 +9,7 @@ const Layout = ({ children }) => {
       <Header />
       <main>{children}</main>
       <Footer />
-      {/* <CookieNotice /> */}
-      <CallButton />
+      <CookieNotice />
     </div>
   )
 }

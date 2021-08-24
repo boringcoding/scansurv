@@ -7,7 +7,7 @@ import Hero from "@/components/hero/hero"
 import Slider from "@/components/hero/slider"
 import Section from "@/components/page/section"
 import Grid from "@/components/page/grid"
-import { Cta } from "@/components/page/partials/cta"
+import { Map } from "@/components/page/partials/map"
 import SEO from "@/components/head/seo"
 import { BaseSchema } from "@/components/head/schema"
 
@@ -56,7 +56,7 @@ export default function Page({ page }) {
                   ) : null
                 ) : v.__typename === "ComponentSectionsPredefinedSection" ? (
                   v.predefinedSection === "cta" ? (
-                    <Cta />
+                    <Map />
                   ) : null
                 ) : null}
               </Fragment>

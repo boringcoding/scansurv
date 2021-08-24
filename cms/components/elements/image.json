@@ -1,0 +1,36 @@
+{
+  "collectionName": "components_elements_images",
+  "info": {
+    "name": "Image",
+    "icon": "arrow-down",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "Stacked",
+        "Background",
+        "Slider"
+      ],
+      "default": "Stacked",
+      "required": true
+    },
+    "lightbox": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    }
+  }
+}

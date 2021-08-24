@@ -4,7 +4,8 @@ import GD from "@/data/global-data.json"
 
 import Href from "@/components/href"
 import ImageWrapper from "@/components/imageWrapper"
-import Accreditations from "@/components/accreditations"
+import ProjectForm from "@/components/forms/projectForm"
+import ContactForm from "@/components/forms/contactForm"
 
 export const ckEditorParseOptions = {
   replace: n => {
@@ -12,8 +13,25 @@ export const ckEditorParseOptions = {
       return
     }
 
-    if (n?.children[0]?.data === "[accreditations]") {
-      return <Accreditations />
+    if (n?.children[0]?.data === "[scanslide_video]") {
+      return (
+        <>
+          <div className="embed-container">
+            <iframe
+              src="https://storage.googleapis.com/scansurv-cms.appspot.com/ScanSlide.mp4"
+              style={{ border: "0" }}
+            ></iframe>
+          </div>
+        </>
+      )
+    }
+
+    if (n?.children[0]?.data === "[project_form]") {
+      return <ProjectForm />
+    }
+
+    if (n?.children[0]?.data === "[contact_form]") {
+      return <ContactForm />
     }
 
     // Store all cms image data in global data, then match it to the src

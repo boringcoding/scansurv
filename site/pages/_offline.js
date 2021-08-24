@@ -10,7 +10,7 @@ const Offline = () => (
   <>
     <SEO
       pageTitle="Offline"
-      titleTag={`Offline | Plumber Leeds | ${process.env.NEXT_PUBLIC_SITE_NAME}`}
+      titleTag={`Offline | ${process.env.NEXT_PUBLIC_SITE_NAME}`}
       metaDescription="Offline."
       bodyClass="offlinePage"
     />

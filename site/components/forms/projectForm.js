@@ -38,6 +38,7 @@ export default function ProjectForm() {
           <div>
             <Image
               src="https://storage.googleapis.com/scansurv-cms.appspot.com/Units_Scan_7_scaled_021c5c4b0a/Units_Scan_7_scaled_021c5c4b0a.jpeg"
+              alt="Project form img 1"
               width={220}
               height={100}
             />
@@ -46,6 +47,7 @@ export default function ProjectForm() {
             <Image
               src="https://storage.googleapis.com/scansurv-cms.appspot.com/Units_Scan_5_scaled_1a2097dd46/Units_Scan_5_scaled_1a2097dd46.jpeg"
               width={220}
+              alt="Project form img 2"
               height={100}
             />
           </div>
@@ -194,8 +196,8 @@ export default function ProjectForm() {
 
           <InputWrapper>
             <Label>
-              Survey Control &amp; Datum - Does The Survey Require A Global "OS"
-              Datum &amp; Level?
+              Survey Control &amp; Datum - Does The Survey Require A Global
+              &quot;OS&quot; Datum &amp; Level?
             </Label>
             <Radios>
               <Radio

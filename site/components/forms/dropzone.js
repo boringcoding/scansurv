@@ -37,7 +37,9 @@ const Dropzone = props => {
         {...getRootProps({ isDragActive, isDragAccept, isDragReject })}
       >
         <input {...getInputProps()} />
-        <p>Drag 'n' drop some files here, or click to select files</p>
+        <p>
+          Drag &lsquo;n&rsquo; drop some files here, or click to select files
+        </p>
       </DropzoneWrapper>
       <aside>
         <ul>{files}</ul>

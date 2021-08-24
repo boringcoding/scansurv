@@ -3,6 +3,7 @@ import tw, { styled } from "twin.macro"
 import Head from "next/head"
 import PlacesAutocomplete, { geocodeByAddress } from "react-places-autocomplete"
 import { Input } from "./@sc"
+import { slugify } from "@/utils/helpers"
 
 const Results = tw.div`shadow-lg absolute left-0 top-full w-full`
 const Result = styled.div`
@@ -54,7 +55,10 @@ const AutocompleteAddress = ({ ...other }) => {
             <Results>
               {loading && <div>Loading...</div>}
               {suggestions.map(suggestion => (
-                <Result {...getSuggestionItemProps(suggestion)}>
+                <Result
+                  {...getSuggestionItemProps(suggestion)}
+                  key={suggestion.placeId || slugify(suggestion.description)}
+                >
                   <span>{suggestion.description}</span>
                 </Result>
               ))}

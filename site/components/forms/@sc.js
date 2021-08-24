@@ -45,7 +45,7 @@ export const Checkbox = ({ value, ...other }) => {
         value={value}
         {...other}
       />
-      <label for={slugify(value)}>{value}</label>
+      <label htmlFor={slugify(value)}>{value}</label>
     </div>
   )
 }
@@ -70,7 +70,7 @@ export const Radio = ({ name, value, ...other }) => {
         name={name}
         {...other}
       />
-      <label for={slugify(value)}>{value}</label>
+      <label htmlFor={slugify(value)}>{value}</label>
     </div>
   )
 }

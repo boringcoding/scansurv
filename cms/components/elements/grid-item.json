@@ -14,10 +14,12 @@
       "type": "string"
     },
     "image": {
-      "type": "component",
-      "repeatable": false,
-      "component": "elements.image",
-      "required": false
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": ["images"],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
     },
     "heading": {
       "type": "string"

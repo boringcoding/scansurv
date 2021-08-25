@@ -92,7 +92,7 @@ const Hero = props => {
                 </h1>
               )}
               {props.hero?.subHeading && (
-                <p tw="text-lg font-serif bg-primary p-2 inline-block text-white font-bold -mt-2">
+                <p tw="text-headingSm font-serif text-shadow text-white -mt-2">
                   {props.hero.subHeading}
                 </p>
               )}

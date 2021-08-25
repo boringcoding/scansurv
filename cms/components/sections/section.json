@@ -33,10 +33,29 @@
       "component": "elements.button"
     },
     "image": {
-      "type": "component",
-      "repeatable": false,
-      "component": "elements.image",
-      "required": false
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": ["images"],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "imageType": {
+      "type": "enumeration",
+      "enum": ["Stacked", "Background", "Slider"],
+      "default": "Stacked",
+      "required": true
+    },
+    "imageLightbox": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "imageHeight": {
+      "type": "enumeration",
+      "enum": ["Responsive", "Cover"],
+      "default": "Responsive",
+      "required": true
     }
   }
 }

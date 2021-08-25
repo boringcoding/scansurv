@@ -36,8 +36,18 @@ export const SectionSc = styled.section(props => [
 ])
 
 export const RowSc = styled.div(props => [
-  tw`flex flex-wrap w-full items-stretch`,
-  props.align == "Right" ? tw`flex-row-reverse` : tw`flex-row`,
+  tw`flex flex-wrap w-full `,
+  props.align === "Right" ? tw`flex-row-reverse` : tw`flex-row`,
+  props.imageHeight === "Cover"
+    ? [
+        tw`items-stretch`,
+        css`
+          & .swiper-container {
+            ${tw`h-full`}
+          }
+        `,
+      ]
+    : tw`items-center`,
 ])
 
 const ImageSc = styled.div(props => [
@@ -46,6 +56,15 @@ const ImageSc = styled.div(props => [
     : props.align === "Center"
     ? tw`mdmin:px-5`
     : tw`mdmin:pl-7`,
+  tw`h-full`,
+  // css`
+  //   & div {
+  //     ${tw`h-full`}
+  //   }
+  //   & img {
+  //     ${tw`object-cover`}
+  //   }
+  // `,
 ])
 
 const Section = props => {
@@ -68,19 +87,24 @@ const Section = props => {
         props.content.heading.toLowerCase().replace(/ /g, "_")
       }
     >
-      {props.content.backgroundImage && props.content.image[0] && (
-        <BackgroundImageWrapper>
-          <Imgs image={props.content.image} preload="true" />
-        </BackgroundImageWrapper>
-      )}
+      {/* Background image */}
+      {props.content.imageType === "Background" &&
+        props.content.image?.length >= 1 && (
+          <BackgroundImageWrapper>
+            <Imgs image={props.content.image} preload="true" />
+          </BackgroundImageWrapper>
+        )}
       <Container variant={containerChoice}>
-        <RowSc align={sectionOptions?.alignment}>
+        <RowSc
+          align={sectionOptions?.alignment}
+          imageHeight={props.content.imageHeight}
+        >
           <div tw="flex-1">
             {props.content.heading && <h2>{props.content.heading}</h2>}
             {props.content.subHeading && <h3>{props.content.subHeading}</h3>}
             {props.content.content &&
               parse(props.content.content, ckEditorParseOptions)}
-            {props.content.accordion && !props.content.image[0] && (
+            {props.content.accordion && !props.content.image?.length >= 1 && (
               <Accordion {...props.content.accordion} />
             )}
             {props.content.button && (
@@ -91,16 +115,22 @@ const Section = props => {
               />
             )}
           </div>
-          {!props.content.backgroundImage && props.content.image[0] && (
-            <div tw="mdmin:(w-1/2) mdmax:(w-full)">
-              <ImageSc align={sectionOptions?.alignment}>
-                <Imgs image={props.content.image} />
-              </ImageSc>
-              {props.content.accordion.length >= 1 && (
-                <Accordion {...props.content.accordion} />
-              )}
-            </div>
-          )}
+          {props.content.imageType !== "Background" &&
+            props.content.image?.length >= 1 && (
+              <div tw="mdmin:(w-1/2) mdmax:(w-full)">
+                <ImageSc align={sectionOptions?.alignment}>
+                  <Imgs
+                    image={props.content.image}
+                    imageHeight={props.content.imageHeight}
+                    imageType={props.content.imageType}
+                    imageLightbox={props.content.imageLightbox}
+                  />
+                </ImageSc>
+                {props.content.accordion.length >= 1 && (
+                  <Accordion {...props.content.accordion} />
+                )}
+              </div>
+            )}
         </RowSc>
       </Container>
     </SectionSc>

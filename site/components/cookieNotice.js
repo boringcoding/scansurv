@@ -30,7 +30,7 @@ const CookieNotice = () => {
       }
       timeout={300}
     >
-      <div tw="text-sm bg-white shadow p-3 fixed bottom-3 left-3 z-50 mdmin:width[400px] mdmax:width[300px] maxWidth[80%]">
+      <div tw="text-sm bg-white text-gray-600 shadow p-3 fixed bottom-3 left-3 z-50 mdmin:width[400px] mdmax:width[300px] maxWidth[80%]">
         <p tw="mb-3 mt-0">
           This website uses cookies to ensure you get the best experience on our
           website. Read more in our{" "}

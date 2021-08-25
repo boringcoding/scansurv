@@ -12,7 +12,7 @@ import GD from "@/data/global-data.json"
 import Href from "@/components/href"
 
 const Wrapper = styled.div`
-  ${tw`flex items-center`}
+  ${tw`flex items-center text-lg`}
   & svg {
     ${tw`mr-2`}
   }

@@ -24,14 +24,6 @@ export default function ContactPage() {
           <Container tw="relative">
             <RowSc>
               <div tw="w-full mdmin:(w-1/2 pr-2)">
-                <h1>Contact Us</h1>
-                <p>
-                  Our general working hours are <strong>8am to 5:30pm</strong>{" "}
-                  but we are available on-call 24/7 for our customers peace of
-                  mind. Get in touch with us for a high-quality, affordable
-                  plumbing service in the Leeds area.{" "}
-                  <strong>Since 1978</strong>.
-                </p>
                 <div tw="pt-5">
                   <h4>Contact Details</h4>
                   <Telephone tw="mb-2" />

@@ -31,8 +31,9 @@ const Imgs = ({
   imageType = "Stacked",
   imageLightbox = false,
 }) => {
+  const hasMounted = useHasMounted()
   return image?.length > 1 ? (
-    useHasMounted() && imageType === "Slider" ? (
+    hasMounted && imageType === "Slider" ? (
       <Swiper
         autoplay={{ delay: 7500 }}
         grabCursor={true}

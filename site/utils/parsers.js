@@ -1,4 +1,5 @@
 import Image from "next/image"
+import "twin.macro"
 
 import GD from "@/data/global-data.json"
 
@@ -15,14 +16,13 @@ export const ckEditorParseOptions = {
 
     if (n?.children[0]?.data === "[scanslide_video]") {
       return (
-        <>
-          <div className="embed-container">
-            <iframe
-              src="https://storage.googleapis.com/scansurv-cms.appspot.com/ScanSlide.mp4"
-              style={{ border: "0" }}
-            ></iframe>
-          </div>
-        </>
+        <div tw="relative" tw="paddingTop[56.25%]">
+          <iframe
+            tw="absolute inset-0 w-full h-full"
+            src="https://storage.googleapis.com/scansurv-cms.appspot.com/Scan-House4.mp4"
+            frameborder="0"
+          />
+        </div>
       )
     }
 

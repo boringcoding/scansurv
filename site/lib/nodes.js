@@ -42,10 +42,12 @@ accordion {
   content
   show
 }
-backgroundImage
 image {
   ${imageNodes}
 }
+imageLightbox
+imageType
+imageHeight
 button {
   ${buttonNodes}
 }
@@ -64,6 +66,7 @@ gridOptions {
   theme
   columns
   slider
+  imageLightbox
 }
 gridItem {
   heading

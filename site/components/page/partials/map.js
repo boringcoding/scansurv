@@ -30,7 +30,7 @@ export const Map = () => {
               strokeOpacity: 0,
               strokeWeight: 2,
               fillColor: twTheme.colors.primary.DEFAULT,
-              fillOpacity: 0.2,
+              fillOpacity: 0.5,
               map,
               center: { lat: 54.13755118548863, lng: -1.5240662038124368 },
               radius: 100000,
@@ -38,7 +38,7 @@ export const Map = () => {
           }
         >
           <h2
-            tw="text-white text-center text-shadow transform -translate-y-1/2 -translate-x-1/2 minWidth[400px] smmax:minWidth[300px]"
+            tw="text-white text-center transform tracking-widest -translate-y-1/2 -translate-x-1/2 minWidth[400px] smmax:minWidth[300px]"
             lat={54.13755118548863}
             lng={-1.5240662038124368}
           >

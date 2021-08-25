@@ -23,7 +23,7 @@ export default function ContactPage() {
         <SectionSc>
           <Container tw="relative">
             <RowSc>
-              <div tw="mdmin:(w-1/2 pr-2)">
+              <div tw="w-full mdmin:(w-1/2 pr-2)">
                 <h1>Contact Us</h1>
                 <p>
                   Our general working hours are <strong>8am to 5:30pm</strong>{" "}
@@ -34,13 +34,13 @@ export default function ContactPage() {
                 </p>
                 <div tw="pt-5">
                   <h4>Contact Details</h4>
-                  <Telephone />
-                  <Mobile />
-                  <Email />
-                  <Address />
+                  <Telephone tw="mb-2" />
+                  <Mobile tw="mb-2" />
+                  <Email tw="mb-2" />
+                  <Address tw="mb-2" />
                 </div>
               </div>
-              <div tw="mdmin:(w-1/2 pl-2)">
+              <div tw="w-full mdmin:(w-1/2 pl-2)">
                 <ContactForm />
               </div>
             </RowSc>

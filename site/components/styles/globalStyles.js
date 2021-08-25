@@ -8,8 +8,6 @@ const CustomStyles = createGlobalStyle`
 // Add fa css @see https://github.com/FortAwesome/react-fontawesome/issues/284
 ${dom.css()}
 
-.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-
   ::placeholder {
     ${tw`text-sm`}
   }
@@ -209,7 +207,7 @@ ${dom.css()}
  * @see node_modules/swiper/components/navigation/navigation.scss
  */
 :root {
-  --swiper-navigation-size: 64px;
+  --swiper-navigation-size: calc(20px + 2.5vw);
 }
 .swiper-button-prev,
 .swiper-button-next {
@@ -292,9 +290,9 @@ ${dom.css()}
   transform: scale(0.33);
 }
 .swiper-pagination-bullet {
-  ${tw`bg-success`}
-  width: 8px;
-  height: 8px;
+  ${tw`bg-primary`}
+  width: 12px;
+  height: 12px;
   display: inline-block;
   border-radius: 50%;
   opacity: 0.2;
@@ -315,7 +313,7 @@ button.swiper-pagination-bullet {
 }
 .swiper-pagination-bullet-active {
   opacity: 1;
-  ${tw`bg-success`}
+  ${tw`bg-primary-dark`}
 }
 .swiper-container-vertical > .swiper-pagination-bullets {
   right: 10px;

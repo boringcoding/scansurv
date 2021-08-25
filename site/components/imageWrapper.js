@@ -8,7 +8,7 @@ import "twin.macro"
  */
 const ImageWrapper = ({ hash, ext, children, ...other }) => {
   return (
-    <div tw="relative block overflow-hidden" {...other}>
+    <div tw="relative block overflow-hidden not-first:mt-3" {...other}>
       {hash && (ext === ".jpg" || ext === ".jpeg") && (
         <BlurhashCanvas hash={hash} tw="absolute inset-0 w-full h-full" />
       )}

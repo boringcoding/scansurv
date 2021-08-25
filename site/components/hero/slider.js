@@ -13,16 +13,16 @@ import ImageWrapper from "@/components/imageWrapper"
 SwiperCore.use([Navigation, Autoplay])
 
 const SliderWrapper = styled.div`
-  ${tw`minHeight[500px] relative overflow-hidden`}
+  ${tw`relative overflow-hidden`}
   & .swiper-slide {
     height: auto;
   }
 `
 const SliderImageWrapper = tw.div`absolute top-0 left-0 h-full w-full filter grayscale`
-const SliderContentWrapper = tw.div`z-10 relative flex flex-col justify-center minHeight[500px] h-full`
+const SliderContentWrapper = tw.div`z-10 relative flex flex-col justify-center minHeight[500px] mdmin:minHeight[750px] h-full`
 const SliderInner = styled.div(({ slide }) => [
   css`
-    ${tw`flex items-center py-6 mdmax:px-3`}
+    ${tw`flex items-center py-6 mdmax:px-3 text-center justify-center`}
     ${slide.alignment === "Left" && tw`flex-row`}
     ${slide.alignment === "Centre" && tw`text-center`}
   `,
@@ -59,9 +59,9 @@ const Content = slide => (
               </h1>
             )}
             {slide.subheading && (
-              <h2 tw="text-white text-headingXl text-shadow -mt-3">
+              <p tw="text-headingSm font-serif text-shadow text-white -mt-2">
                 {slide.subheading}
-              </h2>
+              </p>
             )}
             {slide.content && (
               <div

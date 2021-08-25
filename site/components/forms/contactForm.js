@@ -1,7 +1,14 @@
 import { useForm } from "react-hook-form"
 import "twin.macro"
 
-import { Input, TextArea, ErrorMessage } from "@/components/forms/@sc"
+import {
+  Label,
+  Input,
+  TextArea,
+  ErrorMessage,
+  InputWrapper,
+  RequiredAsterix,
+} from "@/components/forms/@sc"
 import FormTemplate from "@/components/forms/formTemplate"
 
 export default function ContactForm() {
@@ -15,47 +22,49 @@ export default function ContactForm() {
       formState={formState}
       formName="Contact form"
     >
-      <div>
+      <InputWrapper>
+        <Label>
+          Name
+          <RequiredAsterix />
+        </Label>
         <Input
           type="text"
-          placeholder="Name *"
+          placeholder="Enter your name"
           {...register("form.name", { required: true })}
         />
         {formState.errors.form?.name && (
           <ErrorMessage>Please enter your name</ErrorMessage>
         )}
-      </div>
+      </InputWrapper>
 
-      <div tw="grid mdmin:grid-cols-2 gap-2">
-        <div>
-          <Input
-            type="email"
-            placeholder="Email *"
-            {...register("form.email", { required: true })}
-          />
-          {formState.errors.form?.email && (
-            <ErrorMessage>
-              Please enter an email address we can contact you on
-            </ErrorMessage>
-          )}
-        </div>
-
-        <div>
-          <Input type="tel" placeholder="Tel" {...register("form.tel")} />
-        </div>
-      </div>
-
-      <div tw="mb-3">
-        <TextArea
-          placeholder="Message *"
-          {...register("form.message", { required: true })}
+      <InputWrapper>
+        <Label>
+          Email
+          <RequiredAsterix />
+        </Label>
+        <Input
+          type="email"
+          placeholder="Enter your email address"
+          {...register("form.email", { required: true })}
         />
-        {formState.errors.form?.message && (
-          <ErrorMessage>
-            Please provide some details about your enquiry
-          </ErrorMessage>
+        {formState.errors.form?.email && (
+          <ErrorMessage>Please enter your email address</ErrorMessage>
         )}
-      </div>
+      </InputWrapper>
+
+      <InputWrapper>
+        <Label>Subject</Label>
+        <Input
+          type="text"
+          placeholder="Enter your name"
+          {...register("form.name")}
+        />
+      </InputWrapper>
+
+      <InputWrapper tw="mb-5">
+        <Label>Email</Label>
+        <TextArea placeholder="Message *" {...register("form.message")} />
+      </InputWrapper>
     </FormTemplate>
   )
 }

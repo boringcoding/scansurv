@@ -27,7 +27,7 @@ export default function Footer() {
             <div tw="py-6 grid mdmin:(grid-cols-3)">
               <div tw="mdmin:pr-5 mdmax:pb-5">
                 <h4>Contact Information</h4>
-                <ContactDetails tw="mb-5 text-lg" />
+                <ContactDetails tw="mb-5" />
                 <SocialLinks />
               </div>
               <div tw="mdmin:pl-5 flex flex-col">

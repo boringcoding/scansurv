@@ -11,6 +11,9 @@ const path = require("path");
 const crypto = require("crypto");
 const util = require("util");
 const _ = require("lodash");
+const blurhash = require("blurhash");
+const sharp = require("sharp");
+
 const {
   nameToSlug,
   contentTypes: contentTypesUtils,
@@ -20,7 +23,7 @@ const {
 
 const { MEDIA_UPDATE, MEDIA_CREATE, MEDIA_DELETE } = webhookUtils.webhookEvents;
 
-const { bytesToKbytes } = require("../utils/file");
+const bytesToKbytes = (bytes) => Math.round((bytes / 1000) * 100) / 100;
 
 const { UPDATED_BY_ATTRIBUTE, CREATED_BY_ATTRIBUTE } =
   contentTypesUtils.constants;
@@ -148,18 +151,35 @@ module.exports = {
   async uploadFileAndPersist(fileData, { user } = {}) {
     const config = strapi.plugins.upload.config;
 
-    const {
-      getDimensions,
-      generateThumbnail,
-      generateResponsiveFormats,
-      getBlurHash,
-    } = strapi.plugins.upload.services["image-manipulation"];
+    const { getDimensions, generateThumbnail, generateResponsiveFormats } =
+      strapi.plugins.upload.services["image-manipulation"];
 
     await strapi.plugins.upload.provider.upload(fileData);
 
     const thumbnailFile = await generateThumbnail(fileData);
     if (thumbnailFile) {
       await strapi.plugins.upload.provider.upload(thumbnailFile);
+
+      const encodeImageToBlurHash = (imageBuffer) =>
+        new Promise((resolve, reject) => {
+          sharp(imageBuffer)
+            .raw()
+            .ensureAlpha()
+            .toBuffer((err, buffer, { width, height }) => {
+              if (err) return reject(err);
+              resolve(
+                blurhash.encode(
+                  new Uint8ClampedArray(buffer),
+                  width,
+                  height,
+                  4,
+                  4
+                )
+              );
+            });
+        });
+      fileData.blurHash = await encodeImageToBlurHash(thumbnailFile.buffer);
+
       delete thumbnailFile.buffer;
       _.set(fileData, "formats.thumbnail", thumbnailFile);
     }
@@ -180,15 +200,12 @@ module.exports = {
 
     const { width, height } = await getDimensions(fileData.buffer);
 
-    const blurHash = await getBlurHash(fileData.buffer);
-
     delete fileData.buffer;
 
     _.assign(fileData, {
       provider: config.provider,
       width,
       height,
-      blurHash,
     });
 
     return this.add(fileData, { user });
@@ -215,12 +232,8 @@ module.exports = {
   async replace(id, { data, file }, { user } = {}) {
     const config = strapi.plugins.upload.config;
 
-    const {
-      getDimensions,
-      generateThumbnail,
-      generateResponsiveFormats,
-      getBlurHash,
-    } = strapi.plugins.upload.services["image-manipulation"];
+    const { getDimensions, generateThumbnail, generateResponsiveFormats } =
+      strapi.plugins.upload.services["image-manipulation"];
 
     const dbFile = await this.fetch({ id });
 
@@ -277,16 +290,12 @@ module.exports = {
     }
 
     const { width, height } = await getDimensions(fileData.buffer);
-
-    const blurHash = await getBlurHash(fileData.buffer);
-
     delete fileData.buffer;
 
     _.assign(fileData, {
       provider: config.provider,
       width,
       height,
-      blurHash,
     });
 
     return this.update({ id }, fileData, { user });

@@ -23,14 +23,14 @@ const CookieNotice = () => {
       appear
       in={showConsent}
       onEnter={e =>
-        gsap.fromTo(e, { x: -300, autoAlpha: 0 }, { x: 0, autoAlpha: 1 })
+        gsap.fromTo(e, { y: 300, autoAlpha: 0 }, { y: 0, autoAlpha: 1 })
       }
       onExit={e =>
-        gsap.fromTo(e, { x: 0, autoAlpha: 1 }, { x: -300, autoAlpha: 0 })
+        gsap.fromTo(e, { y: 0, autoAlpha: 1 }, { y: 300, autoAlpha: 0 })
       }
       timeout={300}
     >
-      <div tw="flex flex-wrap items-center justify-center text-sm bg-white text-gray-600 shadow p-3 fixed bottom-0 left-0 z-50 w-full">
+      <div tw="flex flex-wrap items-center justify-center bg-white text-gray-600 shadow p-3 fixed bottom-0 left-0 z-50 w-full">
         <p tw="my-0 pr-3">
           Scansurv used cookies to give you the best experience on our website.
           You can find out more about which cookies we are using in our{" "}

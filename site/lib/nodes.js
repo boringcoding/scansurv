@@ -72,7 +72,7 @@ gridItem {
   heading
   subHeading
   content
-  icon
+  imageBorder
   image {
     ${imageNodes}
   }

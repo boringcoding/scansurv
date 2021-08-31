@@ -1,9 +1,13 @@
+import { useRef } from "react"
 import tw, { css } from "twin.macro"
 import parse from "html-react-parser"
-import SwiperCore, { Pagination, Autoplay } from "swiper"
+import SwiperCore, { Navigation, Autoplay } from "swiper"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCheckSquare } from "@fortawesome/pro-solid-svg-icons"
+import {
+  faChevronLeft,
+  faChevronRight,
+} from "@fortawesome/pro-regular-svg-icons"
 
 import { ckEditorParseOptions } from "@/utils/parsers"
 import useHasMounted from "@/utils/mounted"
@@ -13,13 +17,14 @@ import { SectionSc } from "@/components/page/section"
 import { Btns } from "@/components/button"
 import Imgs from "./components/imgs"
 import Lightbox from "@/components/lightbox"
+import { H2 } from "../text"
 
-SwiperCore.use([Pagination, Autoplay])
+SwiperCore.use([Navigation, Autoplay])
 
 const mutualGridItemStyles = css`
-  ${tw`text-center flex flex-col`}
-  & [class*="imageWrapper"] {
-    ${tw`minHeight[calc(10vw + 100px)]`}
+  ${tw`text-center flex flex-col relative`}
+  & > [class*="imageWrapper"] {
+    ${tw`minHeight[calc(10vw + 100px)] mb-3 flex-1`}
     & img {
       object-fit: cover;
     }
@@ -32,9 +37,9 @@ const mutualGridItemStyles = css`
   }
 `
 
-const gridItemDarkStyles = css`
+const gridItemAltStyles = css`
   ${tw`text-white bg-black`}
-  h2 {
+  h5 {
     ${tw`text-white`}
   }
   [class*="button"] {
@@ -52,7 +57,7 @@ const gridColumnVariants = {
 }
 
 const gridItemVariants = {
-  dark: [gridItemDarkStyles, mutualGridItemStyles],
+  dark: [gridItemAltStyles, mutualGridItemStyles],
   light: [tw`bg-white text-black`, mutualGridItemStyles],
   none: [tw``, mutualGridItemStyles],
 }
@@ -66,18 +71,14 @@ const variants = {
 }
 
 const GridEl = ({ variant, slider, children, ...props }) => (
-  <div css={!slider && variants.grid({ variant })} {...props}>
+  <div css={[tw`pt-4`, !slider && variants.grid({ variant })]} {...props}>
     {children}
   </div>
 )
 
 const GridItemEl = ({ variant, lightbox, children, ...props }) => (
   <div
-    css={[
-      variants.gridItem({ variant }),
-      lightbox &&
-        tw`cursor-pointer transform ease-in-out duration-200 hocus:( scale-105 )`,
-    ]}
+    css={[variants.gridItem({ variant }), lightbox && tw`cursor-pointer`]}
     {...props}
   >
     {children}
@@ -91,19 +92,25 @@ const GridItem = props => {
       variant={props?.theme.toLowerCase() || "none"}
       lightbox={props.imageLightbox}
     >
-      {item.image && <Imgs image={item.image} imageType="Slider" />}
-
-      {/* TODO - Need to parse which icon to use or find a better way... Also check Central as pretty sure I did something in there */}
-      {item.icon && (
-        <FontAwesomeIcon icon={faCheckSquare} size="2x" tw="text-success" />
+      {item.image && (
+        <Imgs
+          image={item.image}
+          imageType="Slider"
+          imageBorder={item.imageBorder}
+        />
       )}
       {item.heading && (
         <p
-          tw="text-lg font-serif font-normal tracking-wider uppercase"
           dangerouslySetInnerHTML={{ __html: item.heading }}
+          tw="text-primary bg-gray-800 bg-opacity-90 font-normal p-1 rounded absolute top-0 left-3 right-3 pointer-events-none z-10"
         />
       )}
-      {item.subHeading && <p tw="font-bold">{item.subHeading}</p>}
+      {item.subHeading && (
+        <p
+          tw="font-bold"
+          dangerouslySetInnerHTML={{ __html: item.subHeading }}
+        />
+      )}
       {item.content && parse(item.content, ckEditorParseOptions)}
       {item.button && (
         <Btns
@@ -126,6 +133,9 @@ const Grid = props => {
     ? (containerChoice = "container")
     : (containerChoice = "full")
 
+  const prevRef = useRef(null)
+  const nextRef = useRef(null)
+
   const gridOptions = props.content.gridOptions
   const sliderEnabled = gridOptions?.slider
   const hasMounted = useHasMounted()
@@ -135,10 +145,20 @@ const Grid = props => {
       sectionStyle={sectionOptions?.style}
     >
       <Container variant={containerChoice}>
-        {props.content.heading && <h2>{props.content.heading}</h2>}
-        {props.content.subHeading && <h3>{props.content.subHeading}</h3>}
+        <div tw="flex justify-between">
+          {props.content.heading && <H2>{props.content.heading}</H2>}
+          {props.content.subHeading && (
+            <p
+              tw="text-right"
+              dangerouslySetInnerHTML={{ __html: props.content.subHeading }}
+            />
+          )}
+        </div>
         {props.content.content && (
-          <div dangerouslySetInnerHTML={{ __html: props.content.content }} />
+          <div
+            tw="text-justify"
+            dangerouslySetInnerHTML={{ __html: props.content.content }}
+          />
         )}
         {props.content.gridItem && (
           <Lightbox enable={gridOptions?.imageLightbox}>
@@ -148,10 +168,18 @@ const Grid = props => {
             >
               {hasMounted && sliderEnabled ? (
                 <Swiper
-                  autoplay={{ delay: 7500 }}
+                  autoplay={{ delay: 2500 }}
                   grabCursor={true}
                   loop={true}
-                  pagination={{ clickable: true }}
+                  navigation={{
+                    prevEl: prevRef.current ? prevRef.current : undefined,
+                    nextEl: nextRef.current ? nextRef.current : undefined,
+                  }}
+                  onInit={swiper => {
+                    swiper.params.navigation.prevEl = prevRef.current
+                    swiper.params.navigation.nextEl = nextRef.current
+                    swiper.navigation.update()
+                  }}
                   breakpoints={{
                     320: {
                       slidesPerView: 1,
@@ -172,6 +200,12 @@ const Grid = props => {
                       <GridItem gridItem={v} {...gridOptions} />
                     </SwiperSlide>
                   ))}
+                  <div ref={prevRef} className="swiper-button-prev">
+                    <FontAwesomeIcon icon={faChevronLeft} />
+                  </div>
+                  <div ref={nextRef} className="swiper-button-next">
+                    <FontAwesomeIcon icon={faChevronRight} />
+                  </div>
                 </Swiper>
               ) : (
                 props.content.gridItem.map((v, k) => (

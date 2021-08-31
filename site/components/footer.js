@@ -5,11 +5,16 @@ import Container from "@/components/container"
 import Href from "@/components/href"
 import SocialLinks from "@/components/socialLinks"
 import Logo from "./header/logo"
+import { H5 } from "./text"
 
 const FooterWrapper = styled.footer`
   ${tw`bg-gray-800`}
+  & H5 {
+    text-shadow: none !important;
+  }
 `
 const FooterTop = styled.div`
+  ${tw`text-gray-400`}
   & a {
     ${tw`text-gray-400 hover:text-primary-light`}
   }
@@ -25,15 +30,14 @@ export default function Footer() {
         <FooterTop>
           <Container>
             <div tw="py-6 grid mdmin:(grid-cols-3)">
-              <div tw="mdmin:pr-5 mdmax:pb-5">
-                <h4>Contact Information</h4>
+              <div tw="mdmin:pr-3 mdmax:pb-5">
+                <H5>Contact Information</H5>
                 <ContactDetails tw="mb-5" />
-                <SocialLinks />
               </div>
-              <div tw="mdmin:pl-5 flex flex-col">
-                <h4>Menu</h4>
-                <ul tw="no-prose-list all-child:pl-0 text-lg">
-                  <li>
+              <div tw="mdmin:px-3 flex flex-col">
+                <H5>Scansurv Navigation</H5>
+                <ul tw="no-prose-list mt-0 all-child:pl-0">
+                  <li tw="mt-0">
                     <Href href="/">Home</Href>
                   </li>
                   <li>
@@ -53,8 +57,8 @@ export default function Footer() {
                   </li>
                 </ul>
               </div>
-              <div>
-                <h4>About Scansurv</h4>
+              <div tw="mdmin:pl-3">
+                <H5>About Scansurv</H5>
                 <p>
                   Professionally qualified Engineers meeting your surveying
                   needs.
@@ -70,6 +74,7 @@ export default function Footer() {
               &copy; Copyright {process.env.NEXT_PUBLIC_SITE_NAME},{" "}
               {new Date().getFullYear()}
             </span>
+            <SocialLinks />
             {/* <p tw="my-0 font-serif">
               Site by&nbsp;
               <Href

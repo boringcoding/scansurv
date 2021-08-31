@@ -4,10 +4,14 @@ import SwiperCore, { Navigation, Autoplay } from "swiper"
 import { Swiper, SwiperSlide } from "swiper/react"
 import Image from "next/image"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faChevronLeft, faChevronRight } from "@fortawesome/pro-solid-svg-icons"
+import {
+  faChevronLeft,
+  faChevronRight,
+} from "@fortawesome/pro-regular-svg-icons"
 
 import { Btns } from "@/components/button"
 import Container from "@/components/container"
+import { H1 } from "../text"
 
 SwiperCore.use([Navigation, Autoplay])
 
@@ -17,7 +21,7 @@ const HeroWrapper = styled.div`
     height: 100%;
   }
 `
-const HeroImageWrapper = tw.div`minHeight[500px] absolute top-0 left-0 h-full w-full filter grayscale`
+const HeroImageWrapper = tw.div`minHeight[500px] absolute top-0 left-0 h-full w-full filter[grayscale(.5) contrast(.95) brightness(.9)] after:(w-full h-full block top-0 left-0 absolute backgroundColor[#d8cdcb] mixBlendMode[color])`
 const HeroContentWrapper = tw.div`z-10 relative flex flex-col justify-center minHeight[500px] h-full pointer-events-none before:(content absolute top-0 left-0 h-full w-full)`
 const HeroInner = tw.div`pointer-events-auto py-6 z-10 relative text-white mdmin:maxWidth[70%] mdmax:pt-3`
 
@@ -84,26 +88,27 @@ const Hero = props => {
       </HeroImageWrapper>
       <HeroContentWrapper>
         <Container>
-          <div tw="flex justify-between items-center mdmax:(flex-col-reverse items-start justify-center)">
+          <div tw="flex justify-center items-center text-center">
             <HeroInner>
               {props.hero?.heading && (
-                <h1 tw="text-primary tracking-widest text-shadow block">
-                  {props.hero.heading}
-                </h1>
+                <H1
+                  tw="animate-up"
+                  dangerouslySetInnerHTML={{ __html: props.hero.heading }}
+                />
               )}
               {props.hero?.subHeading && (
-                <p tw="text-headingSm font-serif text-shadow text-white -mt-2">
+                <p tw="animate-up animationDelay[0.1s] opacity-50">
                   {props.hero.subHeading}
                 </p>
               )}
               {props.hero?.content && (
                 <div
-                  tw="text-white block"
+                  tw="text-white block animate-up animationDelay[0.2s]"
                   dangerouslySetInnerHTML={{ __html: props.hero.content }}
                 />
               )}
               {props.hero?.button && (
-                <div tw="block">
+                <div tw="block animate-up animationDelay[0.3s]">
                   <Btns
                     buttons={props.hero.button}
                     evenDefaultVariant="primary"

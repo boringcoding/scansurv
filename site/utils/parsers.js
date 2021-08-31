@@ -7,19 +7,24 @@ import Href from "@/components/href"
 import ImageWrapper from "@/components/imageWrapper"
 import ProjectForm from "@/components/forms/projectForm"
 import ContactForm from "@/components/forms/contactForm"
+import { H1, H2 } from "@/components/text"
 
 export const ckEditorParseOptions = {
   replace: n => {
     if (!n.attribs) {
       return
     }
-
     if (n?.children[0]?.data === "[scanslide_video]") {
       return (
-        <div tw="relative" tw="paddingTop[56.25%]">
-          <iframe
-            tw="absolute inset-0 w-full h-full"
-            src="https://storage.googleapis.com/scansurv-cms.appspot.com/Scan-House4.mp4"
+        <div tw="relative paddingBottom[56.25%] paddingTop[25px] height[0]">
+          <video
+            autoPlay
+            loop
+            controls
+            playsInline
+            controlsList="nodownload"
+            tw="absolute top-0 left-0 w-full h-full"
+            src="/Scan-House4.mp4"
             frameborder="0"
           />
         </div>

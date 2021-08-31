@@ -3,7 +3,7 @@ import "twin.macro"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCaretDown } from "@fortawesome/pro-solid-svg-icons"
+import { faCaretDown } from "@fortawesome/pro-regular-svg-icons"
 import { gsap } from "@gsap/shockingly"
 import { Transition } from "react-transition-group"
 
@@ -21,7 +21,7 @@ import {
  * @param {object} items Object of all the items containing label, dropdown (optional), href (optional)
  * @returns
  */
-const Dropdown = ({ label, items, ...other }) => {
+const Dropdown = ({ label, items, href = null, ...other }) => {
   const [dropdown, setDropdown] = useState(false)
 
   const router = useRouter()
@@ -45,23 +45,33 @@ const Dropdown = ({ label, items, ...other }) => {
       {...other}
       tw="z-10"
     >
-      <NavLink as="button">
-        {label}
-        <FontAwesomeIcon icon={faCaretDown} tw="ml-2 -mt-1" />
-      </NavLink>
+      {href ? (
+        <Link href={href} passHref>
+          {/* Quick fix for this site, changed from navlink. Probably won't be right if add href to dropdown at level 1 */}
+          <DropdownLink>
+            {label}
+            <FontAwesomeIcon icon={faCaretDown} tw="ml-2 -mt-1" />
+          </DropdownLink>
+        </Link>
+      ) : (
+        <NavLink>
+          {label}
+          <FontAwesomeIcon icon={faCaretDown} tw="ml-2 -mt-1" />
+        </NavLink>
+      )}
 
       <Transition
         in={dropdown}
         onEntering={e =>
           gsap.fromTo(
             e,
-            { y: -20, autoAlpha: 0 },
+            { y: 0, autoAlpha: 0 },
             { y: 0, autoAlpha: 1, duration: 0.3 }
           )
         }
         onExit={e =>
           gsap.to(e, {
-            y: -20,
+            y: 0,
             autoAlpha: 0,
             duration: 0.3,
           })
@@ -77,6 +87,7 @@ const Dropdown = ({ label, items, ...other }) => {
                     animateNavLink={false}
                     label={v.label}
                     items={v.dropdown}
+                    href={v.href}
                   />
                 ) : (
                   <DropdownItem>

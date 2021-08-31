@@ -62,8 +62,12 @@ export default function ContactForm() {
       </InputWrapper>
 
       <InputWrapper tw="mb-5">
-        <Label>Email</Label>
-        <TextArea placeholder="Message *" {...register("form.message")} />
+        <Label>Your Message</Label>
+        <TextArea
+          placeholder="Message *"
+          rows="5"
+          {...register("form.message")}
+        />
       </InputWrapper>
     </FormTemplate>
   )

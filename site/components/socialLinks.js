@@ -1,7 +1,7 @@
 import tw, { styled } from "twin.macro"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
-  faFacebook,
+  faFacebookF,
   faTwitter,
   faInstagram,
   faWhatsapp,
@@ -22,18 +22,27 @@ export const SLink = styled.a.attrs({
 })`
   ${tw`not-last:mr-3`}
   & svg {
-    ${tw`text-headingSm`}
+    ${tw`text-base`}
   }
 `
 
 const SocialLinks = () => (
   <Wrapper>
+    {GD.socialMedia.linkedIn && (
+      <SLink
+        href={GD.socialMedia.linkedIn}
+        title={`LinkedIn - ${process.env.NEXT_PUBLIC_SITE_NAME}`}
+        rel="noopener"
+      >
+        <FontAwesomeIcon icon={faLinkedinIn} />
+      </SLink>
+    )}
     {GD.socialMedia.facebook && (
       <SLink
         href={GD.socialMedia.facebook}
         title={`Facebook - ${process.env.NEXT_PUBLIC_SITE_NAME}`}
       >
-        <FontAwesomeIcon icon={faFacebook} />
+        <FontAwesomeIcon icon={faFacebookF} />
       </SLink>
     )}
     {GD.socialMedia.twitter && (
@@ -67,15 +76,6 @@ const SocialLinks = () => (
         rel="noopener"
       >
         <FontAwesomeIcon icon={faYoutube} />
-      </SLink>
-    )}
-    {GD.socialMedia.linkedIn && (
-      <SLink
-        href={GD.socialMedia.linkedIn}
-        title={`LinkedIn - ${process.env.NEXT_PUBLIC_SITE_NAME}`}
-        rel="noopener"
-      >
-        <FontAwesomeIcon icon={faLinkedinIn} />
       </SLink>
     )}
     {GD.socialMedia.messenger && (

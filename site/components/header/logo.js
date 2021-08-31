@@ -4,7 +4,7 @@ import tw from "twin.macro"
 
 import GD from "@/data/global-data.json"
 
-const LogoWrapper = tw.div`width[calc(175px + 5vw)] my-3 flex`
+const LogoWrapper = tw.div`height[59px] flex`
 
 const Logo = () => {
   return GD.brand?.logo ? (

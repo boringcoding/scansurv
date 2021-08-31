@@ -5,7 +5,7 @@ export const Form = styled.form`
   ${tw`relative`}
 `
 
-const mutualStyles = tw`p-2 mt-2 bg-white text-gray-600 block w-full border border-gray-500 dark:border-gray-200 outline-none hocus:border-primary focus:(ring ring-primary ring-opacity-50 disabled:(opacity-50 cursor-not-allowed pointer-events-none))`
+const mutualStyles = tw`p-2 bg-white text-gray-600 block w-full border border-gray-700 rounded outline-none hocus:border-primary focus:(ring ring-primary ring-opacity-50 disabled:(opacity-50 cursor-not-allowed pointer-events-none))`
 
 export const Label = tw.label`font-normal`
 

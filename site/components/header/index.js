@@ -3,18 +3,16 @@ import dynamic from "next/dynamic"
 import Link from "next/link"
 import { useState, useEffect } from "react"
 import { gsap } from "@gsap/shockingly"
-import { Transition, TransitionGroup } from "react-transition-group"
+import { Transition } from "react-transition-group"
 import { useRouter } from "next/router"
 
 const Dropdown = dynamic(() => import("./dropdown"))
 
-import { Email, Mobile, Telephone } from "@/components/contactDetails"
 import { NavItem, NavLink } from "@/components/header/@sc"
 import Hamburger from "@/components/header/hamburger"
 import Logo from "@/components/header/logo"
 
 import { useIsMdMin } from "@/utils/responsive"
-import { Button } from "../button"
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -44,7 +42,14 @@ const Header = () => {
         {
           href: "/services/3d-laser-scanning",
           label: "3D Laser Scanning",
-          type: "menuItem",
+          type: "dropdown",
+          dropdown: [
+            {
+              href: "/project-form",
+              label: "Project form",
+              type: "menuItem",
+            },
+          ],
         },
         {
           href: "/services/360-photography",
@@ -77,7 +82,7 @@ const Header = () => {
 
   return (
     <>
-      <header tw="relative z-40 bg-white border-b-4 border-primary">
+      <header tw="fixed w-full z-40 bg-white">
         <div tw="container mdmax:(pr-0 pl-3 max-w-full items-stretch) flex justify-between items-center">
           <Link href="/">
             <a title={`${process.env.NEXT_PUBLIC_SITE_NAME} logo`}>
@@ -98,19 +103,6 @@ const Header = () => {
                 !menuOpen && tw`mdmax:opacity-0`,
               ]}
             >
-              <Transition
-                in={menuOpen || isMdMin}
-                onEnter={e => gsap.to(e, { y: 0, autoAlpha: 1 })}
-                onExit={e => gsap.to(e, { y: 500, autoAlpha: 0 })}
-                timeout={300}
-              >
-                <div tw="mdmin:(bg-gray-700 border-b-4 border-primary) flex mdmax:(flex-col items-center space-y-3 mt-3 border-t border-white border-opacity-10 pt-3) p-2 mdmin:(space-x-3)">
-                  <Mobile tw="text-sm font-bold hover:(text-primary!) text-white!" />
-                  <Telephone tw="font-bold hover:(text-primary!) text-white!" />
-                  <Email tw="font-bold hover:(text-primary!) text-white!" />
-                  <Button type="ProjectFormPopUp">Project form</Button>
-                </div>
-              </Transition>
               <nav tw="mdmax:(w-full)">
                 <ul tw="flex mdmax:(flex-col text-center) my-0 no-prose-list">
                   {menuItems.map((val, i) => (
@@ -127,8 +119,6 @@ const Header = () => {
                           {
                             y: 0,
                             autoAlpha: 1,
-                            // stagger: 0.1 * i,
-                            // delay: 0.15 * i,
                             duration: 0.65,
                           }
                         )
@@ -137,8 +127,6 @@ const Header = () => {
                         gsap.to(e, {
                           y: -500,
                           autoAlpha: 0,
-                          // stagger: 0.1 * i,
-                          // delay: 0.1 * i,
                           duration: 0.3,
                         })
                       }
@@ -146,7 +134,6 @@ const Header = () => {
                     >
                       {val.type === "menuItem" ? (
                         <NavItem>
-                          {/* Need to implement Href here with the figureOutHref util */}
                           {val.href ? (
                             <Link href={val.href} passHref>
                               <NavLink>{val.label}</NavLink>
@@ -156,7 +143,9 @@ const Header = () => {
                           )}
                         </NavItem>
                       ) : val.type === "dropdown" ? (
-                        <Dropdown label={val.label} items={val.dropdown} />
+                        <>
+                          <Dropdown label={val.label} items={val.dropdown} />
+                        </>
                       ) : null}
                     </Transition>
                   ))}

@@ -1,13 +1,16 @@
 import "twin.macro"
 
 import Layout from "@/components/layout"
-import { RowSc, SectionSc } from "@/components/page/section"
+import { SectionSc } from "@/components/page/section"
 import Container from "@/components/container"
 import ContactForm from "@/components/forms/contactForm"
 import SEO from "@/components/head/seo"
 import { BaseSchema } from "@/components/head/schema"
 import { Map } from "@/components/page/partials/map"
-import { Address, Email, Mobile, Telephone } from "@/components/contactDetails"
+import ContactDetails from "@/components/contactDetails"
+import Href from "@/components/href"
+import { H2, H4 } from "@/components/text"
+import Hero from "@/components/hero/hero"
 
 export default function ContactPage() {
   return (
@@ -20,22 +23,47 @@ export default function ContactPage() {
       />
       <BaseSchema />
       <Layout>
+        <Hero
+          {...{
+            hero: {
+              heading: "Contact Scansurv",
+              subHeading: "Let's Discuss Your Survey Requirements",
+              background: [
+                {
+                  url: "https://storage.googleapis.com/scansurv-cms.appspot.com/Farm_7_scaled_e82dfa828a/Farm_7_scaled_e82dfa828a.jpeg",
+                },
+              ],
+            },
+          }}
+        />
         <SectionSc>
           <Container tw="relative">
-            <RowSc>
-              <div tw="w-full mdmin:(w-1/2 pr-2)">
+            <div tw="flex w-full">
+              <div tw="w-full mdmin:(w-1/2 pr-5)">
                 <div tw="pt-5">
-                  <h4>Contact Details</h4>
-                  <Telephone tw="mb-2" />
-                  <Mobile tw="mb-2" />
-                  <Email tw="mb-2" />
-                  <Address tw="mb-2" />
+                  <H2>Contact Us</H2>
+                  <p>
+                    Please feel free to contact Scansurv to obtain a free
+                    quotation to suit your surveying, scanning or monitoring
+                    requirements.
+                  </p>
+
+                  <p tw="mb-7">
+                    Please refer to the{" "}
+                    <Href href="/project-form">
+                      <a>3D laser scanning project requirement form</a>
+                    </Href>{" "}
+                    which allows you to detail the specific requirements to
+                    tailor the laser scan survey to your individual needs.
+                  </p>
+                  <H4>Contact Details</H4>
+                  <ContactDetails />
                 </div>
               </div>
               <div tw="w-full mdmin:(w-1/2 pl-2)">
                 <ContactForm />
               </div>
-            </RowSc>
+            </div>
           </Container>
         </SectionSc>
         <Map />

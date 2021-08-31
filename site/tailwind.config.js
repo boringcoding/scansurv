@@ -49,6 +49,13 @@ module.exports = {
       },
     },
 
+    letterSpacing: {
+      tighter: "-.05em",
+      normal: "0",
+      wider: ".125em",
+      widest: ".25em",
+    },
+
     spacing: {
       0: "0",
       1: "0.3rem",
@@ -74,10 +81,10 @@ module.exports = {
      */
     fontSize: {
       xs: [".675rem", "1rem"],
-      sm: [".8rem", "1.2rem"],
-      base: ["1rem", "1.5rem"],
-      lg: ["1.3rem", "1.8rem"],
-      xl: ["1.5rem", "2rem"],
+      sm: [".75rem", "1.15rem"],
+      base: ["0.9rem", "1.4rem"],
+      lg: ["1.125rem", "1.625rem"],
+      xl: ["1.3rem", "1.8rem"],
       headingSm: ["1.75rem", "2.25rem"],
       headingBase: ["2rem", "2.5rem"],
       headingLg: ["2.5rem", "3rem"],
@@ -111,6 +118,21 @@ module.exports = {
     extend: {
       gridTemplateColumns: {
         auto: "repeat(auto-fit,minmax(0,1fr))",
+      },
+      animation: {
+        up: "slide-up 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both",
+      },
+      keyframes: {
+        "slide-up": {
+          "0%": {
+            transform: "translateY(100px)",
+            opacity: "0",
+          },
+          "100%": {
+            transform: "translateY(0px)",
+            opacity: "1",
+          },
+        },
       },
     },
   },

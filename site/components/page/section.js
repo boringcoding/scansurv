@@ -7,11 +7,12 @@ import Container from "@/components/container"
 import Accordion from "@/components/accordion"
 import { Btns } from "@/components/button"
 import Imgs from "./components/imgs"
+import { H2 } from "../text"
 
 const BackgroundImageWrapper = tw.div`absolute top-0 left-0 w-full h-full`
 
 export const SectionSc = styled.section(props => [
-  tw`py-6 relative overflow-hidden`,
+  tw`first:pt-8 last:pb-8 py-4 relative overflow-hidden`,
   props.align === "Right"
     ? tw``
     : props.align === "Left"
@@ -57,14 +58,17 @@ const ImageSc = styled.div(props => [
     ? tw`mdmin:px-5`
     : tw`mdmin:pl-7`,
   tw`h-full`,
-  // css`
-  //   & div {
-  //     ${tw`h-full`}
-  //   }
-  //   & img {
-  //     ${tw`object-cover`}
-  //   }
-  // `,
+  css`
+    /* & div {
+      ${tw`h-full`}
+    } */
+    /* & img {
+      ${tw`object-cover`}
+    } */
+    & > div {
+      ${tw`rounded border-white border`}
+    }
+  `,
 ])
 
 const Section = props => {
@@ -100,10 +104,13 @@ const Section = props => {
           imageHeight={props.content.imageHeight}
         >
           <div tw="flex-1">
-            {props.content.heading && <h2>{props.content.heading}</h2>}
+            {props.content.heading && <H2>{props.content.heading}</H2>}
             {props.content.subHeading && <h3>{props.content.subHeading}</h3>}
-            {props.content.content &&
-              parse(props.content.content, ckEditorParseOptions)}
+            {props.content.content && (
+              <div tw="text-justify">
+                {parse(props.content.content, ckEditorParseOptions)}
+              </div>
+            )}
             {props.content.accordion && !props.content.image?.length >= 1 && (
               <Accordion {...props.content.accordion} />
             )}

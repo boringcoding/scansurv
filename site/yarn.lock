@@ -987,10 +987,10 @@
   dependencies:
     "@fortawesome/fontawesome-common-types" "^0.2.36"
 
-"@fortawesome/pro-solid-svg-icons@^5.15.4":
+"@fortawesome/pro-regular-svg-icons@^5.15.4":
   version "5.15.4"
-  resolved "https://npm.fontawesome.com/@fortawesome/pro-solid-svg-icons/-/5.15.4/pro-solid-svg-icons-5.15.4.tgz#bf0f54b5920e8a779684bc9e69617ef5259c00c9"
-  integrity sha512-ZlSg/RyAlwYJcsJlw2WfZSeOJ8GMKwIQ3ZY+GNFRZ+7pF+RRXxyZp2WIgUKhPK/M43SfSou6R6XdKZyz2xVVEQ==
+  resolved "https://npm.fontawesome.com/@fortawesome/pro-regular-svg-icons/-/5.15.4/pro-regular-svg-icons-5.15.4.tgz#38c17d05ddebff70cfd86c2f178a4272f57fb13b"
+  integrity sha512-LN9wOPIISKg3jZBbAuMm6YcsCiMRzTcpVkotLonRuzDmw0OLszUPCHZ6vB5hEnOC7g6IIOwOOnV12fW0V8IS9Q==
   dependencies:
     "@fortawesome/fontawesome-common-types" "^0.2.36"
 

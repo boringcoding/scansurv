@@ -5,21 +5,23 @@ import {
   faEnvelope,
   faLocation,
   faMobileAlt,
-} from "@fortawesome/pro-solid-svg-icons"
+} from "@fortawesome/pro-regular-svg-icons"
 
 import GD from "@/data/global-data.json"
 
 import Href from "@/components/href"
 
 const Wrapper = styled.div`
-  ${tw`flex items-center text-lg`}
+  ${tw`flex items-center`}
   & svg {
     ${tw`mr-2`}
   }
 `
 
 const styles = {
-  icon: ({ fixedWidthIcon }) => [fixedWidthIcon && tw`h-3 w-3! mr-3!`],
+  icon: ({ fixedWidthIcon }) => [
+    fixedWidthIcon && tw`h-3 w-3! mr-3! text-primary!`,
+  ],
   item: ({ variant }) => [
     variant === "dark"
       ? tw`text-black!`
@@ -46,13 +48,13 @@ export const Telephone = ({
 }) =>
   CD.telephone && (
     <Wrapper>
+      <FontAwesomeIcon icon={faPhone} css={styles.icon({ fixedWidthIcon })} />
       <Href
         href={`tel:${CD.telephone.replace(/\s+/g, "")}`}
         title={`Call us on ${CD.telephone}`}
         css={styles.item({ variant })}
         {...other}
       >
-        <FontAwesomeIcon icon={faPhone} css={styles.icon({ fixedWidthIcon })} />
         {CD.telephone}
       </Href>
     </Wrapper>
@@ -71,16 +73,16 @@ export const Mobile = ({
 }) =>
   CD.mobile && (
     <Wrapper>
+      <FontAwesomeIcon
+        icon={faMobileAlt}
+        css={styles.icon({ fixedWidthIcon })}
+      />
       <Href
         href={`tel:${CD.mobile.replace(/\s+/g, "")}`}
         title={`Call us on ${CD.mobile}`}
         css={styles.item({ variant })}
         {...otherHref}
       >
-        <FontAwesomeIcon
-          icon={faMobileAlt}
-          css={styles.icon({ fixedWidthIcon })}
-        />
         {CD.mobile}
       </Href>
     </Wrapper>
@@ -95,16 +97,16 @@ export const Mobile = ({
 export const Email = ({ fixedWidthIcon = null, variant = null, ...other }) =>
   CD.email && (
     <Wrapper>
+      <FontAwesomeIcon
+        icon={faEnvelope}
+        css={styles.icon({ fixedWidthIcon })}
+      />
       <Href
         href={`mailto:${CD.email}`}
         title={`Email us on ${CD.email}`}
         css={styles.item({ variant })}
         {...other}
       >
-        <FontAwesomeIcon
-          icon={faEnvelope}
-          css={styles.icon({ fixedWidthIcon })}
-        />
         {CD.email}
       </Href>
     </Wrapper>
@@ -148,10 +150,10 @@ const cdStyles = {
  */
 const ContactDetails = ({ align, ...other }) => (
   <div css={cdStyles.contactDetails({ align })} {...other}>
-    <Telephone fixedWidthIcon />
-    <Mobile fixedWidthIcon />
-    <Email fixedWidthIcon />
-    <Address fixedWidthIcon />
+    <Email fixedWidthIcon tw="text-white" />
+    <Telephone fixedWidthIcon tw="text-white" />
+    <Mobile fixedWidthIcon tw="text-white" />
+    <Address fixedWidthIcon tw="text-white" />
   </div>
 )
 

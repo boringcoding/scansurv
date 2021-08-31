@@ -30,12 +30,16 @@ const CookieNotice = () => {
       }
       timeout={300}
     >
-      <div tw="text-sm bg-white text-gray-600 shadow p-3 fixed bottom-3 left-3 z-50 mdmin:width[400px] mdmax:width[300px] maxWidth[80%]">
-        <p tw="mb-3 mt-0">
-          This website uses cookies to ensure you get the best experience on our
-          website. Read more in our{" "}
-          <Href href="/privacy-policy" title="Link to privacy policy">
-            Privacy policy
+      <div tw="flex flex-wrap items-center justify-center text-sm bg-white text-gray-600 shadow p-3 fixed bottom-0 left-0 z-50 w-full">
+        <p tw="my-0 pr-3">
+          Scansurv used cookies to give you the best experience on our website.
+          You can find out more about which cookies we are using in our{" "}
+          <Href
+            href="/privacy-policy"
+            title="Link to privacy policy"
+            tw="font-sans"
+          >
+            privacy policy
           </Href>
         </p>
 

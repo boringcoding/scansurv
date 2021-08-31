@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 import "twin.macro"
-import { slugify } from "@/utils/helpers"
+import GD from "@/data/global-data.json"
 
 import {
   Input,
@@ -19,6 +19,7 @@ import Dropzone from "@/components/forms/dropzone"
 import FormTemplate from "@/components/forms/formTemplate"
 import AutocompleteAddress from "@/components/forms/autocompleteAddress"
 import Image from "next/image"
+import { H2 } from "../text"
 
 export default function ProjectForm() {
   const { register, handleSubmit, getValues, reset, formState } = useForm()
@@ -29,31 +30,46 @@ export default function ProjectForm() {
 
   return (
     <>
-      <div tw="flex mb-5 justify-between">
+      <div tw="flex mb-5 justify-between text-left">
         <div tw="pr-5">
-          <h2>3D Laser Scanning Project Requirements</h2>
+          <H2>3D Laser Scanning Project Requirements</H2>
           <p>Please complete the form below with your project requirements.</p>
         </div>
-        <div tw="flex space-x-3">
+        <div tw="flex items-start space-x-3">
           <div>
             <Image
               src="https://storage.googleapis.com/scansurv-cms.appspot.com/Units_Scan_7_scaled_021c5c4b0a/Units_Scan_7_scaled_021c5c4b0a.jpeg"
               alt="Project form img 1"
-              width={220}
-              height={100}
+              width={320}
+              height={150}
             />
           </div>
           <div>
             <Image
               src="https://storage.googleapis.com/scansurv-cms.appspot.com/Units_Scan_5_scaled_1a2097dd46/Units_Scan_5_scaled_1a2097dd46.jpeg"
-              width={220}
+              width={320}
               alt="Project form img 2"
-              height={100}
+              height={150}
             />
           </div>
         </div>
       </div>
-      <div tw="bg-white text-gray-600 p-3">
+      <div tw="bg-white text-gray-600 p-3 relative">
+        <div tw="absolute top-3 right-3 text-right text-sm flex flex-col items-end">
+          <div tw="width[120px]">
+            <Image
+              src={GD.brand.logo.url}
+              alt={GD.brand.logo.alternativeText || "Logo"}
+              height={GD.brand.logo.height}
+              width={GD.brand.logo.width}
+            />
+          </div>
+          <p>
+            Email: info@scansurv.co.uk
+            <br />
+            Register No: 11346578
+          </p>
+        </div>
         <FormTemplate
           handleSubmit={handleSubmit}
           getValues={getValues}
@@ -61,22 +77,24 @@ export default function ProjectForm() {
           formState={formState}
           formName="Project form"
         >
-          <InputWrapper>
-            <Label>
-              Project Address (inc Postcode)
-              <RequiredAsterix />
-            </Label>
-            <AutocompleteAddress
-              placeholder="Address where scan is required"
-              // REGISTERED AUTOCOMPLETE FIELD AS REQUIRED IN AUTOCOMPLETE.js
-              // {...register("form.projectAddress", { required: true })}
-            />
-            {/* {formState.errors.form?.projectAddress && (
+          <div tw="w-1/2">
+            <InputWrapper>
+              <Label>
+                Project Address (inc Postcode)
+                <RequiredAsterix />
+              </Label>
+              <AutocompleteAddress
+                placeholder="Address where scan is required"
+                // REGISTERED AUTOCOMPLETE FIELD AS REQUIRED IN AUTOCOMPLETE.js
+                // {...register("form.projectAddress", { required: true })}
+              />
+              {/* {formState.errors.form?.projectAddress && (
           <ErrorMessage>
             Please provide the project address (inc postcode)
           </ErrorMessage>
         )} */}
-          </InputWrapper>
+            </InputWrapper>
+          </div>
 
           <InputWrapper>
             <Label>Job Number</Label>

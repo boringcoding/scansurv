@@ -21,8 +21,8 @@
     },
     "theme": {
       "type": "enumeration",
-      "enum": ["Dark", "Light", "None"],
-      "default": "Dark",
+      "enum": ["Alt", "None"],
+      "default": "None",
       "required": true
     },
     "imageLightbox": {

@@ -1,16 +1,14 @@
-import { useRef } from "react"
-import SwiperCore, { Navigation, Autoplay } from "swiper"
+import SwiperCore, { Pagination, Autoplay } from "swiper"
 import { Swiper, SwiperSlide } from "swiper/react"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faChevronLeft, faChevronRight } from "@fortawesome/pro-solid-svg-icons"
 import Image from "next/image"
 import tw, { styled, css } from "twin.macro"
 
 import { Btns } from "@/components/button"
 import Container from "@/components/container"
 import ImageWrapper from "@/components/imageWrapper"
+import { H1 } from "../text"
 
-SwiperCore.use([Navigation, Autoplay])
+SwiperCore.use([Pagination, Autoplay])
 
 const SliderWrapper = styled.div`
   ${tw`relative overflow-hidden`}
@@ -18,8 +16,8 @@ const SliderWrapper = styled.div`
     height: auto;
   }
 `
-const SliderImageWrapper = tw.div`absolute top-0 left-0 h-full w-full filter grayscale`
-const SliderContentWrapper = tw.div`z-10 relative flex flex-col justify-center minHeight[500px] mdmin:minHeight[750px] h-full`
+const SliderImageWrapper = tw.div`absolute top-0 left-0 h-full w-full filter[grayscale(.5) contrast(.95) brightness(.9)] after:(w-full h-full block top-0 left-0 absolute backgroundColor[#d8cdcb] mixBlendMode[color])`
+const SliderContentWrapper = tw.div`z-10 relative flex flex-col justify-center minHeight[100vh] h-full`
 const SliderInner = styled.div(({ slide }) => [
   css`
     ${tw`flex items-center py-6 mdmax:px-3 text-center justify-center`}
@@ -54,27 +52,42 @@ const Content = slide => (
         <SliderInner {...{ slide }}>
           <div>
             {slide.heading && (
-              <h1 tw="text-headingXl text-primary text-shadow">
-                {slide.heading}
-              </h1>
+              <H1
+                dangerouslySetInnerHTML={{
+                  __html: slide.heading,
+                }}
+                css={slide.isActive && tw`animate-up`}
+              />
             )}
-            {slide.subheading && (
-              <p tw="text-headingSm font-serif text-shadow text-white -mt-2">
-                {slide.subheading}
+            {slide.subHeading && (
+              <p
+                css={[
+                  tw`opacity-50`,
+                  slide.isActive && tw`animate-up animationDelay[0.1s]`,
+                ]}
+              >
+                {slide.subHeading}
               </p>
             )}
             {slide.content && (
               <div
-                tw="text-white mdmax:font-normal mdmin:maxWidth[70%]"
-                dangerouslySetInnerHTML={{ __html: slide.content }}
+                css={[
+                  tw`text-white mdmax:font-normal mdmin:maxWidth[70%]`,
+                  slide.isActive && tw`animate-up animationDelay[0.2s]`,
+                ]}
+                dangerouslySetInnerHTML={{
+                  __html: slide.content,
+                }}
               />
             )}
             {slide.button && (
-              <Btns
-                buttons={slide.button}
-                evenDefaultVariant="primary"
-                oddDefaultVariant="black"
-              />
+              <div css={slide.isActive && tw`animate-up animationDelay[0.3s]`}>
+                <Btns
+                  buttons={slide.button}
+                  evenDefaultVariant="primary"
+                  oddDefaultVariant="secondary"
+                />
+              </div>
             )}
           </div>
           {slide.image && (
@@ -98,9 +111,6 @@ const Content = slide => (
 )
 
 export default function Slider(props) {
-  const prevRef = useRef(null)
-  const nextRef = useRef(null)
-
   return (
     <SliderWrapper>
       {props.slider.slide &&
@@ -110,86 +120,19 @@ export default function Slider(props) {
             grabCursor={true}
             loop={true}
             slidesPerView={1}
-            navigation={{
-              prevEl: prevRef.current ? prevRef.current : undefined,
-              nextEl: nextRef.current ? nextRef.current : undefined,
-            }}
-            onInit={swiper => {
-              swiper.params.navigation.prevEl = prevRef.current
-              swiper.params.navigation.nextEl = nextRef.current
-              swiper.navigation.update()
+            pagination={{
+              clickable: true,
+              renderBullet: (index, className) =>
+                `<span class="${className}">0${index + 1}</span>`,
             }}
           >
-            {props.slider.slide.map(slide => (
+            {props.slider.slide.map((slide, i) => (
               <SwiperSlide key={slide.id}>
-                <SliderImageWrapper>
-                  {slide.background && (
-                    <Image
-                      src={slide.background.url}
-                      alt={
-                        slide.background.alternativeText || `Slide ${slide.id}`
-                      }
-                      layout="fill"
-                      objectFit="cover"
-                      objectPosition="center"
-                      preload="true"
-                    />
-                  )}
-                </SliderImageWrapper>
-                <SliderContentWrapper>
-                  <Container>
-                    <SliderInner {...{ slide }}>
-                      <div>
-                        {slide.heading && (
-                          <h1 tw="text-primary tracking-widest text-shadow">
-                            {slide.heading}
-                          </h1>
-                        )}
-                        {slide.subheading && (
-                          <h2 tw="text-primary -mt-3">{slide.subheading}</h2>
-                        )}
-                        {slide.content && (
-                          <div
-                            tw="text-white mdmax:font-normal mdmin:maxWidth[70%]"
-                            dangerouslySetInnerHTML={{ __html: slide.content }}
-                          />
-                        )}
-                        {slide.button && (
-                          <Btns
-                            buttons={slide.button}
-                            evenDefaultVariant="primary"
-                            oddDefaultVariant="secondary"
-                          />
-                        )}
-                      </div>
-                      {slide.image && (
-                        <div tw="w-1/3 mr-5">
-                          <ImageWrapper
-                            hash={slide.image.blurHash}
-                            ext={slide.image.ext}
-                          >
-                            <Image
-                              src={slide.image.url}
-                              width={slide.image.width}
-                              height={slide.image.height}
-                              alt={slide.image.alternativeText}
-                              layout="responsive"
-                              preload="true"
-                            />
-                          </ImageWrapper>
-                        </div>
-                      )}
-                    </SliderInner>
-                  </Container>
-                </SliderContentWrapper>
+                {({ isActive }) => (
+                  <Content {...props.slider.slide[i]} isActive={isActive} />
+                )}
               </SwiperSlide>
             ))}
-            <div ref={prevRef} className="swiper-button-prev">
-              <FontAwesomeIcon icon={faChevronLeft} />
-            </div>
-            <div ref={nextRef} className="swiper-button-next">
-              <FontAwesomeIcon icon={faChevronRight} />
-            </div>
           </Swiper>
         ) : (
           <Content {...props.slider.slide[0]} />

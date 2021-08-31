@@ -5,6 +5,11 @@ config.autoAddCss = false
 
 const CustomStyles = createGlobalStyle`
 
+// custom bits
+#professionally_qualified + section .swiper-container {
+  overflow: visible !important;
+}
+
 // Add fa css @see https://github.com/FortAwesome/react-fontawesome/issues/284
 ${dom.css()}
 
@@ -13,7 +18,7 @@ ${dom.css()}
   }
 
   ::selection {
-    ${tw`bg-black text-primary`}
+    ${tw`bg-primary text-white`}
   }
 
   .grecaptcha-badge {
@@ -41,7 +46,8 @@ ${dom.css()}
   body {
    ${tw`transition-all ease-in-out duration-300 font-light text-base text-white max-w-full first:mt-0 last:mb-0`}
    background-color: #000000;
-   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%233a3a3a' fill-opacity='0.4'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("/pattern.png");
+  background-repeat: repeat;
   }
 
   p {
@@ -53,7 +59,7 @@ ${dom.css()}
   }
 
   ul > li {
-    ${tw`before:(content absolute bg-gray-200 rounded-full w-1 h-1 left-1 transform top-1/2 -translate-y-1/2)`}
+    ${tw`before:(content backgroundImage[url("/bullet.png")] bg-cover absolute width[0.5rem] height[0.5rem] left-1 transform top-1/2 -translate-y-1/2)`}
   }
   ol > li {
     ${tw`before:(content[counter(list-item, var(--list-counter-style, decimal)) "."] absolute font-normal text-gray-500 left-0)`}
@@ -72,7 +78,7 @@ ${dom.css()}
   }
 
   h1, h2, h3, h4, h5, h6 {
-    ${tw`font-serif text-primary font-bold mt-0 mb-3 uppercase`}
+    ${tw`font-serif text-primary font-bold mt-0 mb-3 uppercase tracking-wider`}
   }
 
   h1 {
@@ -87,8 +93,16 @@ ${dom.css()}
     ${tw`text-headingBase`}
   }
 
-  h4, h5, h6 {
+  h4 {
     ${tw`text-headingSm`}
+  }
+
+  h5 {
+    ${tw`text-xl`}
+  }
+
+  h6 {
+    ${tw`text-lg`}
   }
 
   h2 + *, h3 + *, h4 + * {
@@ -116,7 +130,13 @@ ${dom.css()}
     ${tw`my-0`}
   }
 
-  video {
+  video, iframe, iframe video {
+    object-fit: cover;
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    line-height: 1;
+    border: none;
     ${tw`my-4`}
   }
 
@@ -211,8 +231,8 @@ ${dom.css()}
 }
 .swiper-button-prev,
 .swiper-button-next {
-  ${tw`absolute top-1/2 flex items-center justify-center cursor-pointer text-primary`}
-  width: calc(var(--swiper-navigation-size) / 44 * 27);
+  ${tw`absolute top-1/2 flex items-center justify-center cursor-pointer text-primary!`}
+  width: calc(var(--swiper-navigation-size) / 84 * 27);
   height: var(--swiper-navigation-size);
   margin-top: calc(-1 * var(--swiper-navigation-size) / 2);
   z-index: 10;
@@ -290,12 +310,12 @@ ${dom.css()}
   transform: scale(0.33);
 }
 .swiper-pagination-bullet {
-  ${tw`bg-primary`}
-  width: 12px;
-  height: 12px;
-  display: inline-block;
-  border-radius: 50%;
-  opacity: 0.2;
+  ${tw`font-serif text-lg tracking-wider`};
+  &:hover {
+  text-decoration: line-through;
+  text-decoration-color: ${theme("colors.primary")};
+  }
+  display: inline-block
 }
 button.swiper-pagination-bullet {
   border: none;
@@ -312,8 +332,8 @@ button.swiper-pagination-bullet {
   display: none !important;
 }
 .swiper-pagination-bullet-active {
-  opacity: 1;
-  ${tw`bg-primary-dark`}
+  text-decoration: line-through;
+  text-decoration-color: ${theme("colors.primary")}
 }
 .swiper-container-vertical > .swiper-pagination-bullets {
   right: 10px;

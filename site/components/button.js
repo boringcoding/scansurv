@@ -7,7 +7,7 @@ import {
   faMobileAlt,
   faPhone,
   faEnvelope,
-} from "@fortawesome/pro-solid-svg-icons"
+} from "@fortawesome/pro-regular-svg-icons"
 import dynamic from "next/dynamic"
 import ProjectForm from "./forms/projectForm"
 

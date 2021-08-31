@@ -1,7 +1,7 @@
 import { useRef, useState } from "react"
 import ReCAPTCHA from "react-google-recaptcha"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faSpinnerThird } from "@fortawesome/pro-solid-svg-icons"
+import { faSpinnerThird } from "@fortawesome/pro-regular-svg-icons"
 import { gsap } from "@gsap/shockingly"
 import { Transition } from "react-transition-group"
 

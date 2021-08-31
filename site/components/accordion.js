@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react"
 import tw, { styled } from "twin.macro"
 import { useMeasure } from "react-use"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faChevronDown } from "@fortawesome/pro-solid-svg-icons"
+import { faChevronDown } from "@fortawesome/pro-regular-svg-icons"
 import { gsap } from "@gsap/shockingly"
 
 const AccordionHeading = styled.div(({ open }) => [

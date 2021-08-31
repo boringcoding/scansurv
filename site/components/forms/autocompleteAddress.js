@@ -40,7 +40,7 @@ const AutocompleteAddress = ({ ...other }) => {
         onChange={a => setAddress(a)}
         onSelect={handleSelect}
         googleCallbackName="initAutocomplete"
-        debounce="500"
+        debounce={500}
         searchOptions={{
           componentRestrictions: { country: ["gb"] }, // limit to uk
           types: ["address"], // only return addresses

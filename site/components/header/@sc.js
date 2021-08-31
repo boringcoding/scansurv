@@ -8,12 +8,12 @@ export const NavItem = styled.li.attrs({
 `
 
 const mutualLinkStyles = `font-serif tracking-wider uppercase whitespace-nowrap flex items-center mdmax:(justify-center)`
-const dropdownLinkStyles = `${mutualLinkStyles} px-3 py-2 text-white text-base hocus:(bg-primary) mdmax:(text-lg)`
+const dropdownLinkStyles = `${mutualLinkStyles} px-3 py-2 text-white text-base text-opacity-75 hocus:(text-opacity-100) mdmax:(text-lg)`
 
-export const NavLink = tw.a`${mutualLinkStyles} text-black text-lg font-normal p-3 hocus:(text-primary) mdmax:(text-white text-headingSm font-bold w-full)`
+export const NavLink = tw.a`${mutualLinkStyles} text-black font-bold tracking-wider px-3 py-4 hocus:(text-primary) mdmax:(text-white text-headingSm w-full)`
 
 export const DropdownWrapper = styled.ul`
-  ${tw`invisible absolute bg-black bg-opacity-100 my-0 z-10 top-full left-0 mdmax:(left-1/2! transform! -translate-x-1/2! bg-white)`}
+  ${tw`invisible absolute bg-gray-800 bg-opacity-100 my-0 z-10 top-full left-0 mdmax:(left-1/2! transform! -translate-x-1/2! bg-white)`}
   & ul {
     ${tw`mdmin:(top-0 left-full) mdmax:(left-1/2 top-full)`}
   }

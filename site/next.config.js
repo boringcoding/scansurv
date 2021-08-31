@@ -74,7 +74,7 @@ const ContentSecurityPolicy = `
   child-src 'self' *.youtube.com *.twitter.com *.googleapis.com *.appspot.com *.googletagmanager.com *.google-analytics.com *.googleadservices.com *.google.com *.googleads.g.doubleclick.net *.gstatic.com;
   style-src 'self' 'unsafe-inline' *.googleapis.com *.tagmanager.google.com *.fonts.googleapis.com;
   img-src * blob: data: *.gstatic.com *.googleads.g.doubleclick.net *.google.com;
-  media-src 'none';
+  media-src *;
   connect-src *;
   font-src 'self' data: *.gstatic.com;
 `

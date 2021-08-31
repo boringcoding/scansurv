@@ -49,8 +49,23 @@ module.exports = withBundleAnalyzer(
     async redirects() {
       return [
         {
-          source: "/home",
-          destination: "/",
+          source: "/3d-laser-scanning",
+          destination: "/services/3d-laser-scanning",
+          permanent: true,
+        },
+        {
+          source: "/360-photography",
+          destination: "/services/360-photography",
+          permanent: true,
+        },
+        {
+          source: "/structural-surveys",
+          destination: "/services/structural-surveys",
+          permanent: true,
+        },
+        {
+          source: "/measured-building-surveys",
+          destination: "/services/measured-building-surveys",
           permanent: true,
         },
         ...socialLinks,

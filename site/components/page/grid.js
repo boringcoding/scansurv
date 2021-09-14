@@ -30,7 +30,7 @@ const mutualGridItemStyles = css`
   [class*="button"] {
     ${tw`mr-0! mb-0!`}
   }
-  & .swiper-container {
+  & .swiper {
     ${tw`h-full w-full`}
   }
 `
@@ -170,13 +170,11 @@ const Grid = props => {
                   autoplay={{ delay: 2500 }}
                   grabCursor={true}
                   loop={true}
-                  navigation={{
-                    prevEl: prevRef.current ? prevRef.current : undefined,
-                    nextEl: nextRef.current ? nextRef.current : undefined,
-                  }}
                   onInit={swiper => {
                     swiper.params.navigation.prevEl = prevRef.current
                     swiper.params.navigation.nextEl = nextRef.current
+                    swiper.navigation.init()
+                    swiper.navigation.update()
                   }}
                   breakpoints={{
                     320: {

@@ -15,8 +15,8 @@ import { H1 } from "../text"
 
 const HeroWrapper = styled.div`
   ${tw`minHeight[500px] relative overflow-hidden`}
-  & .swiper-container {
-    height: 100%;
+  & .swiper {
+    ${tw`h-full`}
   }
 `
 const HeroImageWrapper = tw.div`minHeight[500px] absolute top-0 left-0 h-full w-full filter[grayscale(.5) contrast(.95) brightness(.9)] after:(w-full h-full block top-0 left-0 absolute backgroundColor[#d8cdcb] mixBlendMode[color])`
@@ -45,13 +45,11 @@ const Hero = props => {
             grabCursor={true}
             loop={true}
             slidesPerView={1}
-            navigation={{
-              prevEl: prevRef.current ? prevRef.current : undefined,
-              nextEl: nextRef.current ? nextRef.current : undefined,
-            }}
             onInit={swiper => {
               swiper.params.navigation.prevEl = prevRef.current
               swiper.params.navigation.nextEl = nextRef.current
+              swiper.navigation.init()
+              swiper.navigation.update()
             }}
           >
             {props.hero.background.map((slide, key) => (

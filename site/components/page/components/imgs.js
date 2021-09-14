@@ -1,5 +1,21 @@
 import dynamic from "next/dynamic"
-import useHasMounted from "@/utils/mounted"
+
+const ImageSlider = dynamic(
+  () => import("@/components/page/components/image-types/imageSlider"),
+  { ssr: false }
+)
+const MultipleImages = dynamic(
+  () => import("@/components/page/components/image-types/multipleImages"),
+  {
+    ssr: false,
+  }
+)
+const SingleImage = dynamic(
+  () => import("@/components/page/components/image-types/singleImage"),
+  {
+    ssr: false,
+  }
+)
 
 /**
  * Imgs
@@ -24,14 +40,8 @@ const Imgs = ({
   imageLightbox = false,
   imageBorder = false,
 }) => {
-  const hasMounted = useHasMounted()
-
   if (image?.length > 1) {
-    if (hasMounted && imageType === "Slider") {
-      const ImageSlider = dynamic(
-        () => import("@/components/page/components/image-types/imageSlider"),
-        { ssr: false }
-      )
+    if (imageType === "Slider") {
       return (
         <ImageSlider
           image={image}
@@ -40,12 +50,6 @@ const Imgs = ({
         />
       )
     } else {
-      const MultipleImages = dynamic(
-        () => import("@/components/page/components/image-types/multipleImages"),
-        {
-          ssr: false,
-        }
-      )
       return (
         <MultipleImages
           imageLightbox={imageLightbox}
@@ -57,12 +61,6 @@ const Imgs = ({
       )
     }
   } else if (image?.length === 1) {
-    const SingleImage = dynamic(
-      () => import("@/components/page/components/image-types/singleImage"),
-      {
-        ssr: false,
-      }
-    )
     return (
       <SingleImage
         imageLightbox={imageLightbox}

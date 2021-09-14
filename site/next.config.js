@@ -29,15 +29,22 @@ module.exports = withBundleAnalyzer(
 
     // @see https://nextjs.org/docs/basic-features/image-optimization
     images: {
-      domains: [
-        "storage.cloud.google.com",
-        "images.unsplash.com",
-        "storage.googleapis.com",
-      ],
+      minimumCacheTTL: 31536000, // cache all optimised images for 1 year. Nothing on this site is dynamic
+      domains: ["storage.cloud.google.com", "storage.googleapis.com"],
     },
 
     async headers() {
       return [
+        {
+          source: "/:all*(svg|jpg|png)",
+          locale: false,
+          headers: [
+            {
+              key: "Cache-Control",
+              value: "public, max-age=31536000, must-revalidate",
+            },
+          ],
+        },
         {
           source: "/(.*)",
           headers: securityHeaders,
@@ -85,7 +92,7 @@ module.exports = withBundleAnalyzer(
 // https://securityheaders.com
 const ContentSecurityPolicy = `
   default-src 'self';
-  script-src 'self' 'unsafe-eval' 'unsafe-inline' *.youtube.com *.twitter.com *.googleapis.com *.appspot.com *.googletagmanager.com *.google-analytics.com *.googleadservices.com *.google.com *.googleads.g.doubleclick.net *.gstatic.com;
+  script-src 'self' 'unsafe-eval' 'unsafe-inline' *.youtube.com *.twitter.com *.googleapis.com *.appspot.com *.googletagmanager.com *.google-analytics.com *.googleadservices.com *.google.com *.googleads.g.doubleclick.net *.gstatic.com *.facebook.net;
   child-src 'self' *.youtube.com *.twitter.com *.googleapis.com *.appspot.com *.googletagmanager.com *.google-analytics.com *.googleadservices.com *.google.com *.googleads.g.doubleclick.net *.gstatic.com;
   style-src 'self' 'unsafe-inline' *.googleapis.com *.tagmanager.google.com *.fonts.googleapis.com;
   img-src * blob: data: *.gstatic.com *.googleads.g.doubleclick.net *.google.com;

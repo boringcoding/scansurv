@@ -43,7 +43,7 @@ const AutocompleteAddress = ({ ...other }) => {
         debounce={500}
         searchOptions={{
           componentRestrictions: { country: ["gb"] }, // limit to uk
-          types: ["address"], // only return addresses
+          // types: ["address"], // only return addresses (need company addresses on this site tho)
         }}
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (

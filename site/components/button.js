@@ -8,13 +8,8 @@ import {
   faPhone,
   faEnvelope,
 } from "@fortawesome/pro-regular-svg-icons"
-import dynamic from "next/dynamic"
-import ProjectForm from "./forms/projectForm"
 
 import GD from "@/data/global-data.json"
-
-const Modal = dynamic(() => import("@/components/modal"))
-const ContactForm = dynamic(() => import("@/components/forms/contactForm"))
 
 // set base styles for buttons with backgrounds
 const baseStyles = `hocus:(bg-opacity-75 border-opacity-0)`
@@ -60,9 +55,7 @@ const Btn = styled.a`
   "URL",
   "Email",
   "Phone",
-  "Mobile",
-  "ContactFormPopUp",
-  "ProjectFormPopUp"
+  "Mobile"
  */
 
 export const Button = ({
@@ -133,51 +126,6 @@ export const Button = ({
         <FontAwesomeIcon icon={faMobileAlt} css={tw`mr-2`} />{" "}
         {children || GD.contactDetail.mobile}
       </Btn>
-    )
-  }
-
-  // modals
-  if (type == "ContactFormPopUp") {
-    return (
-      <>
-        <Btn
-          as="button"
-          onClick={() => setShowModal(true)}
-          variant={variant}
-          {...props}
-        >
-          {children}
-        </Btn>
-        <Modal
-          title="Free no obligation quote"
-          getState={showModal}
-          setState={() => setShowModal(prevState => !prevState)}
-        >
-          <ContactForm />
-        </Modal>
-      </>
-    )
-  }
-
-  if (type == "ProjectFormPopUp") {
-    return (
-      <>
-        <Btn
-          as="button"
-          onClick={() => setShowModal(true)}
-          variant={variant}
-          {...props}
-        >
-          {children}
-        </Btn>
-        <Modal
-          title=""
-          getState={showModal}
-          setState={() => setShowModal(prevState => !prevState)}
-        >
-          <ProjectForm />
-        </Modal>
-      </>
     )
   }
 

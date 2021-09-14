@@ -16,8 +16,8 @@ export default function ContactPage() {
   return (
     <>
       <SEO
-        titleTag={`Contact | ${process.env.NEXT_PUBLIC_SITE_NAME}`}
-        metaDescription="Contact our team today for a free no-obligation quote on any of our Leeds plumbing services. We will endeavour to attend to you as quickly as possible."
+        titleTag={`Contact Us | Full Structural Surveys & 3D Scanning | ${process.env.NEXT_PUBLIC_SITE_NAME}`}
+        metaDescription="Contact Scansurv to obtain a free quotation to suit your full structural surveys & 3D scanning requirements from our North Yorkshire based team."
         pageTitle="Contact"
         bodyClass="contact"
       />

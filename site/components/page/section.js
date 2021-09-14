@@ -95,7 +95,7 @@ const Section = props => {
       {props.content.imageType === "Background" &&
         props.content.image?.length >= 1 && (
           <BackgroundImageWrapper>
-            <Imgs image={props.content.image} preload="true" />
+            <Imgs image={props.content.image} priority />
           </BackgroundImageWrapper>
         )}
       <Container variant={containerChoice}>

@@ -9,7 +9,9 @@
   "attributes": {
     "predefinedSection": {
       "type": "enumeration",
-      "enum": ["cta", "map"],
+      "enum": [
+        "map"
+      ],
       "required": true
     }
   }

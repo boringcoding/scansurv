@@ -55,7 +55,7 @@ export default function Page({ page }) {
                     <Grid content={v.partial.partial[0]} />
                   ) : null
                 ) : v.__typename === "ComponentSectionsPredefinedSection" ? (
-                  v.predefinedSection === "cta" ? (
+                  v.predefinedSection === "map" ? (
                     <Map />
                   ) : null
                 ) : null}

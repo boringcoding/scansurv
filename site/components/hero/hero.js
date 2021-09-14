@@ -1,6 +1,6 @@
 import { useRef } from "react"
 import tw, { styled } from "twin.macro"
-import SwiperCore, { Navigation, Autoplay } from "swiper"
+import { Navigation, Autoplay } from "swiper"
 import { Swiper, SwiperSlide } from "swiper/react"
 import Image from "next/image"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -12,8 +12,6 @@ import {
 import { Btns } from "@/components/button"
 import Container from "@/components/container"
 import { H1 } from "../text"
-
-SwiperCore.use([Navigation, Autoplay])
 
 const HeroWrapper = styled.div`
   ${tw`minHeight[500px] relative overflow-hidden`}
@@ -42,6 +40,7 @@ const Hero = props => {
       <HeroImageWrapper>
         {props.hero?.background[1] ? (
           <Swiper
+            modules={[Navigation, Autoplay]}
             autoplay={{ delay: 7500 }}
             grabCursor={true}
             loop={true}

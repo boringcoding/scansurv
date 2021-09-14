@@ -1,7 +1,7 @@
 import { useRef } from "react"
 import tw, { css } from "twin.macro"
 import parse from "html-react-parser"
-import SwiperCore, { Navigation, Autoplay } from "swiper"
+import { Navigation, Autoplay } from "swiper"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
@@ -18,8 +18,6 @@ import { Btns } from "@/components/button"
 import Imgs from "./components/imgs"
 import Lightbox from "@/components/lightbox"
 import { H2 } from "../text"
-
-SwiperCore.use([Navigation, Autoplay])
 
 const mutualGridItemStyles = css`
   ${tw`text-center flex flex-col relative`}
@@ -168,6 +166,7 @@ const Grid = props => {
             >
               {hasMounted && sliderEnabled ? (
                 <Swiper
+                  modules={[Navigation, Autoplay]}
                   autoplay={{ delay: 2500 }}
                   grabCursor={true}
                   loop={true}

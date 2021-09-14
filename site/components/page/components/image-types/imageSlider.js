@@ -2,7 +2,7 @@ import { useRef } from "react"
 import Image from "next/image"
 import tw from "twin.macro"
 import { Swiper, SwiperSlide } from "swiper/react"
-import SwiperCore, { Navigation, Autoplay } from "swiper"
+import { Navigation, Autoplay } from "swiper"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   faChevronLeft,
@@ -11,14 +11,13 @@ import {
 
 import ImageWrapper from "@/components/imageWrapper"
 
-SwiperCore.use([Navigation, Autoplay])
-
 const ImageSlider = ({ image, priority, imageBorder }) => {
   const prevRef = useRef(null)
   const nextRef = useRef(null)
 
   return (
     <Swiper
+      modules={[Navigation, Autoplay]}
       autoplay={{ delay: 7500 }}
       grabCursor={true}
       loop={true}

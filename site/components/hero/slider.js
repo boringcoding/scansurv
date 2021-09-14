@@ -1,4 +1,4 @@
-import SwiperCore, { Pagination, Autoplay } from "swiper"
+import { Pagination, Autoplay } from "swiper"
 import { Swiper, SwiperSlide } from "swiper/react"
 import Image from "next/image"
 import tw, { styled, css } from "twin.macro"
@@ -7,8 +7,7 @@ import { Btns } from "@/components/button"
 import Container from "@/components/container"
 import ImageWrapper from "@/components/imageWrapper"
 import { H1 } from "../text"
-
-SwiperCore.use([Pagination, Autoplay])
+import useHasMounted from "@/utils/mounted"
 
 const SliderWrapper = styled.div`
   ${tw`relative overflow-hidden`}
@@ -111,11 +110,13 @@ const Content = slide => (
 )
 
 export default function Slider(props) {
+  const hasMounted = useHasMounted()
   return (
     <SliderWrapper>
       {props.slider.slide &&
-        (props.slider.slide[1] ? (
+        (props.slider.slide[1] && hasMounted ? (
           <Swiper
+            modules={[Pagination, Autoplay]}
             autoplay={{ delay: 7500 }}
             grabCursor={true}
             loop={true}

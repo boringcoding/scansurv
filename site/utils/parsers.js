@@ -9,7 +9,7 @@ export const ckEditorParseOptions = {
     if (!n.attribs) {
       return
     }
-    if (n?.children[0]?.data === "[scanslide_video]") {
+    if (n?.children[0]?.data === "[video]") {
       return (
         <div tw="relative paddingBottom[56.25%] paddingTop[25px] height[0]">
           <video

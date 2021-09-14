@@ -43,7 +43,7 @@ export const RowSc = styled.div(props => [
     ? [
         tw`items-stretch`,
         css`
-          & .swiper-container {
+          & .swiper {
             ${tw`h-full`}
           }
         `,

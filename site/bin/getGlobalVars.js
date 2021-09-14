@@ -81,11 +81,6 @@ async function getGlobalData() {
           telephone
           mobile
         }
-        predefinedSection {
-          cta {
-            ${predefinedPartialNodes}
-          }
-        }
       }
     `)
   fs.writeFile("./data/global-data.json", JSON.stringify(data), err => {

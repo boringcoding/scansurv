@@ -86,6 +86,11 @@ const HomePage = ({ history: { push } }) => {
                     Displays the map <code>[map]</code>
                   </P>
                 </li>
+                <li>
+                  <P>
+                    Displays the video <code>[video]</code>
+                  </P>
+                </li>
               </ul>
             </Block>
             <Deployments />

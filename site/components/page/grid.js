@@ -1,7 +1,7 @@
 import { useRef } from "react"
 import tw, { css } from "twin.macro"
 import parse from "html-react-parser"
-import SwiperCore, { Navigation, Autoplay } from "swiper"
+import { Navigation, Autoplay } from "swiper"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
@@ -19,8 +19,6 @@ import Imgs from "./components/imgs"
 import Lightbox from "@/components/lightbox"
 import { H2 } from "../text"
 
-SwiperCore.use([Navigation, Autoplay])
-
 const mutualGridItemStyles = css`
   ${tw`text-center flex flex-col relative`}
   & > [class*="imageWrapper"] {
@@ -32,7 +30,7 @@ const mutualGridItemStyles = css`
   [class*="button"] {
     ${tw`mr-0! mb-0!`}
   }
-  & .swiper-container {
+  & .swiper {
     ${tw`h-full w-full`}
   }
 `
@@ -168,16 +166,14 @@ const Grid = props => {
             >
               {hasMounted && sliderEnabled ? (
                 <Swiper
+                  modules={[Navigation, Autoplay]}
                   autoplay={{ delay: 2500 }}
                   grabCursor={true}
                   loop={true}
-                  navigation={{
-                    prevEl: prevRef.current ? prevRef.current : undefined,
-                    nextEl: nextRef.current ? nextRef.current : undefined,
-                  }}
                   onInit={swiper => {
                     swiper.params.navigation.prevEl = prevRef.current
                     swiper.params.navigation.nextEl = nextRef.current
+                    swiper.navigation.init()
                     swiper.navigation.update()
                   }}
                   breakpoints={{

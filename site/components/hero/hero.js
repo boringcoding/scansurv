@@ -1,6 +1,6 @@
 import { useRef } from "react"
 import tw, { styled } from "twin.macro"
-import SwiperCore, { Navigation, Autoplay } from "swiper"
+import { Navigation, Autoplay } from "swiper"
 import { Swiper, SwiperSlide } from "swiper/react"
 import Image from "next/image"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -13,12 +13,10 @@ import { Btns } from "@/components/button"
 import Container from "@/components/container"
 import { H1 } from "../text"
 
-SwiperCore.use([Navigation, Autoplay])
-
 const HeroWrapper = styled.div`
   ${tw`minHeight[500px] relative overflow-hidden`}
-  & .swiper-container {
-    height: 100%;
+  & .swiper {
+    ${tw`h-full`}
   }
 `
 const HeroImageWrapper = tw.div`minHeight[500px] absolute top-0 left-0 h-full w-full filter[grayscale(.5) contrast(.95) brightness(.9)] after:(w-full h-full block top-0 left-0 absolute backgroundColor[#d8cdcb] mixBlendMode[color])`
@@ -42,17 +40,15 @@ const Hero = props => {
       <HeroImageWrapper>
         {props.hero?.background[1] ? (
           <Swiper
+            modules={[Navigation, Autoplay]}
             autoplay={{ delay: 7500 }}
             grabCursor={true}
             loop={true}
             slidesPerView={1}
-            navigation={{
-              prevEl: prevRef.current ? prevRef.current : undefined,
-              nextEl: nextRef.current ? nextRef.current : undefined,
-            }}
             onInit={swiper => {
               swiper.params.navigation.prevEl = prevRef.current
               swiper.params.navigation.nextEl = nextRef.current
+              swiper.navigation.init()
               swiper.navigation.update()
             }}
           >

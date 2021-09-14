@@ -13,12 +13,16 @@ export const BaseSchema = () => {
     {
       "@context": "http://schema.org",
       "@type": "LocalBusiness",
-      additionalType: ["http://www.productontology.org/doc/Plumber"],
+      additionalType: [
+        "http://www.productontology.org/doc/3D_scanning",
+        "http://www.productontology.org/doc/laser_scanning",
+        "http://www.productontology.org/doc/surveying",
+      ],
       url: process.env.NEXT_PUBLIC_SITE_URL,
       name: process.env.NEXT_PUBLIC_SITE_NAME,
-      foundingLocation: "Leeds",
-      legalName: "Same Day Plumber",
-      description: "24 hour call out plumber in Leeds",
+      foundingLocation: "Ripon",
+      legalName: process.env.NEXT_PUBLIC_SITE_NAME,
+      description: process.env.NEXT_PUBLIC_SITE_NAME,
       logo: `${process.env.NEXT_PUBLIC_SITE_URL}/icon-192x192.png`,
       image: `${
         process.env.NEXT_PUBLIC_OG_URL
@@ -29,10 +33,10 @@ export const BaseSchema = () => {
       geo: {
         "@type": "GeoCoordinates",
         "@id": `${process.env.NEXT_PUBLIC_SITE_URL}/#GeoCoordinates`,
-        latitude: 53.801277,
-        longitude: -1.548567,
+        latitude: 54.132834773372686,
+        longitude: -1.5177029815834708,
       },
-      openingHours: ["Mo,Tu,We,Th,Fr,Sa,Su 00:00-23:59"],
+      openingHours: ["Mo,Tu,We,Th,Fr 07:00-19:00"],
       contactPoint: {
         "@type": "ContactPoint",
         telephone: `${GD.contactDetail.telephone}`,

@@ -43,7 +43,7 @@ const Content = slide => (
           layout="fill"
           objectFit="cover"
           objectPosition="center"
-          preload="true"
+          priority
         />
       )}
     </SliderImageWrapper>
@@ -99,7 +99,7 @@ const Content = slide => (
                   height={slide.image.height}
                   alt={slide.image.alternativeText}
                   layout="responsive"
-                  preload="true"
+                  priority
                 />
               </ImageWrapper>
             </div>

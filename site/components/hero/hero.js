@@ -64,7 +64,7 @@ const Hero = props => {
                   layout="fill"
                   objectFit="cover"
                   objectPosition="center"
-                  preload="true"
+                  priority
                 />
               </SwiperSlide>
             ))}
@@ -82,7 +82,7 @@ const Hero = props => {
             layout="fill"
             objectFit="cover"
             objectPosition="center"
-            preload="true"
+            priority
           />
         ) : null}
       </HeroImageWrapper>

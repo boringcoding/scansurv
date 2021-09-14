@@ -14,6 +14,7 @@ const Logo = () => {
         alt={GD.brand.logo.alternativeText || "Logo"}
         height={GD.brand.logo.height}
         width={GD.brand.logo.width}
+        priority
       />
     </LogoWrapper>
   ) : GD.brand?.altLogo ? (
@@ -23,6 +24,7 @@ const Logo = () => {
         alt={GD.brand.altLogo.alternativeText || "Logo"}
         height={GD.brand.altLogo.height}
         width={GD.brand.altLogo.width}
+        priority
       />
     </LogoWrapper>
   ) : (

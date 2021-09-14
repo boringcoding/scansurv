@@ -66,9 +66,6 @@ async function getGlobalData() {
             ${imageNodes}
           }
         }
-        files {
-          ${imageNodes}
-        }
         socialMedia {
           facebook
           twitter

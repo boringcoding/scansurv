@@ -9,14 +9,7 @@
   "attributes": {
     "type": {
       "type": "enumeration",
-      "enum": [
-        "URL",
-        "Email",
-        "Phone",
-        "Mobile",
-        "ContactFormPopUp",
-        "ProjectFormPopUp"
-      ],
+      "enum": ["URL", "Email", "Phone", "Mobile"],
       "default": "URL"
     },
     "variant": {

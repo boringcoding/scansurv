@@ -1,13 +1,8 @@
-import Image from "next/image"
 import "twin.macro"
 
-import GD from "@/data/global-data.json"
-
 import Href from "@/components/href"
-import ImageWrapper from "@/components/imageWrapper"
 import ProjectForm from "@/components/forms/projectForm"
 import ContactForm from "@/components/forms/contactForm"
-import { H1, H2 } from "@/components/text"
 
 export const ckEditorParseOptions = {
   replace: n => {
@@ -37,24 +32,6 @@ export const ckEditorParseOptions = {
 
     if (n?.children[0]?.data === "[contact_form]") {
       return <ContactForm />
-    }
-
-    // Store all cms image data in global data, then match it to the src
-    if (n.name === "figure" && n.attribs.class.includes("image")) {
-      const img = GD.files.find(e => e.url === n.firstChild.attribs.src)
-
-      if (img) {
-        return (
-          <ImageWrapper hash={img.blurHash} ext={img.ext}>
-            <Image
-              src={img.url}
-              alt={img.alt || img.name}
-              width={img.width}
-              height={img.height}
-            />
-          </ImageWrapper>
-        )
-      }
     }
 
     if (n.name === "a") {

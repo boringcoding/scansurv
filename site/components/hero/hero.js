@@ -52,7 +52,6 @@ const Hero = props => {
             onInit={swiper => {
               swiper.params.navigation.prevEl = prevRef.current
               swiper.params.navigation.nextEl = nextRef.current
-              swiper.navigation.update()
             }}
           >
             {props.hero.background.map((slide, key) => (

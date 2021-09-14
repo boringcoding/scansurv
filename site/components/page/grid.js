@@ -177,7 +177,6 @@ const Grid = props => {
                   onInit={swiper => {
                     swiper.params.navigation.prevEl = prevRef.current
                     swiper.params.navigation.nextEl = nextRef.current
-                    swiper.navigation.update()
                   }}
                   breakpoints={{
                     320: {

@@ -29,7 +29,6 @@ const ImageSlider = ({ image, priority, imageBorder }) => {
       onInit={swiper => {
         swiper.params.navigation.prevEl = prevRef.current
         swiper.params.navigation.nextEl = nextRef.current
-        swiper.navigation.update()
       }}
     >
       {image.map((v, k) => (

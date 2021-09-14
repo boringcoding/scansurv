@@ -6,7 +6,7 @@ config.autoAddCss = false
 const CustomStyles = createGlobalStyle`
 
 // custom bits
-#professionally_qualified + section .swiper-container {
+#professionally_qualified + section .swiper {
   overflow: visible !important;
 }
 
@@ -246,12 +246,12 @@ ${dom.css()}
   }
 }
 .swiper-button-prev,
-.swiper-container-rtl .swiper-button-next {
+.swiper-rtl .swiper-button-next {
   left: 10px;
   right: auto;
 }
 .swiper-button-next,
-.swiper-container-rtl .swiper-button-prev {
+.swiper-rtl .swiper-button-prev {
   right: 10px;
   left: auto;
 }
@@ -276,7 +276,7 @@ ${dom.css()}
 .swiper-pagination.swiper-pagination-hidden {
   opacity: 0;
 }
-.swiper-container-horizontal > .swiper-pagination-bullets,
+.swiper-horizontal > .swiper-pagination-bullets,
 .swiper-pagination-custom,
 .swiper-pagination-fraction {
   bottom: 10px;
@@ -335,46 +335,46 @@ button.swiper-pagination-bullet {
   text-decoration: line-through;
   text-decoration-color: ${theme("colors.primary")}
 }
-.swiper-container-vertical > .swiper-pagination-bullets {
+.swiper-vertical > .swiper-pagination-bullets {
   right: 10px;
   top: 50%;
   transform: translate3d(0, -50%, 0);
 }
-.swiper-container-vertical
+.swiper-vertical
   > .swiper-pagination-bullets
   .swiper-pagination-bullet {
   margin: 6px 0;
   display: block;
 }
-.swiper-container-vertical
+.swiper-vertical
   > .swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
   top: 50%;
   transform: translateY(-50%);
   width: 8px;
 }
-.swiper-container-vertical
+.swiper-vertical
   > .swiper-pagination-bullets.swiper-pagination-bullets-dynamic
   .swiper-pagination-bullet {
   display: inline-block;
   transition: 0.2s transform, 0.2s top;
 }
-.swiper-container-horizontal
+.swiper-horizontal
   > .swiper-pagination-bullets
   .swiper-pagination-bullet {
   margin: 0 4px;
 }
-.swiper-container-horizontal
+.swiper-horizontal
   > .swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
   left: 50%;
   transform: translateX(-50%);
   white-space: nowrap;
 }
-.swiper-container-horizontal
+.swiper-horizontal
   > .swiper-pagination-bullets.swiper-pagination-bullets-dynamic
   .swiper-pagination-bullet {
   transition: 0.2s transform, 0.2s left;
 }
-.swiper-container-horizontal.swiper-container-rtl
+.swiper-horizontal.swiper-rtl
   > .swiper-pagination-bullets-dynamic
   .swiper-pagination-bullet {
   transition: 0.2s transform, 0.2s right;
@@ -393,22 +393,22 @@ button.swiper-pagination-bullet {
   transform: scale(0);
   transform-origin: left top;
 }
-.swiper-container-rtl
+.swiper-rtl
   .swiper-pagination-progressbar
   .swiper-pagination-progressbar-fill {
   transform-origin: right top;
 }
-.swiper-container-horizontal > .swiper-pagination-progressbar,
-.swiper-container-vertical
+.swiper-horizontal > .swiper-pagination-progressbar,
+.swiper-vertical
   > .swiper-pagination-progressbar.swiper-pagination-progressbar-opposite {
   width: 100%;
   height: 4px;
   left: 0;
   top: 0;
 }
-.swiper-container-horizontal
+.swiper-horizontal
   > .swiper-pagination-progressbar.swiper-pagination-progressbar-opposite,
-.swiper-container-vertical > .swiper-pagination-progressbar {
+.swiper-vertical > .swiper-pagination-progressbar {
   width: 4px;
   height: 100%;
   left: 0;
@@ -430,7 +430,7 @@ button.swiper-pagination-bullet {
  * base styles
  * @see node_modules/swiper/swiper.scss
  */
-.swiper-container {
+.swiper {
   ${tw`mx-auto relative overflow-hidden list-none p-0`}
   /* Fix of Webkit flickering */
   z-index: 1;
@@ -441,24 +441,24 @@ button.swiper-pagination-bullet {
   z-index: 1;
   transition-property: transform;
 }
-.swiper-container-android .swiper-slide,
+.swiper-android .swiper-slide,
 .swiper-wrapper {
   transform: translate3d(0px, 0, 0);
 }
-.swiper-container-multirow > .swiper-wrapper {
+.swiper-multirow > .swiper-wrapper {
   flex-wrap: wrap;
 }
-.swiper-container-multirow-column > .swiper-wrapper {
+.swiper-multirow-column > .swiper-wrapper {
   flex-wrap: wrap;
   flex-direction: column;
 }
-.swiper-container-free-mode > .swiper-wrapper {
+.swiper-free-mode > .swiper-wrapper {
   transition-timing-function: ease-out;
   margin: 0 auto;
 }
-.swiper-container-pointer-events {
+.swiper-pointer-events {
   touch-action: pan-y;
-  &.swiper-container-vertical {
+  &.swiper-vertical {
     touch-action: pan-x;
   }
 }
@@ -473,7 +473,7 @@ button.swiper-pagination-bullet {
   visibility: hidden;
 }
 /* Auto Height */
-.swiper-container-autoheight {
+.swiper-autoheight {
   &,
   .swiper-slide {
     height: auto;
@@ -486,7 +486,7 @@ button.swiper-pagination-bullet {
 }
 
 /* 3D Effects */
-.swiper-container-3d {
+.swiper-3d {
   perspective: 1200px;
   .swiper-wrapper,
   .swiper-slide,
@@ -513,7 +513,7 @@ button.swiper-pagination-bullet {
 }
 
 /* CSS Mode */
-.swiper-container-css-mode {
+.swiper-css-mode {
   > .swiper-wrapper {
     overflow: auto;
     scrollbar-width: none; /* For Firefox */
@@ -526,12 +526,12 @@ button.swiper-pagination-bullet {
     scroll-snap-align: start start;
   }
 }
-.swiper-container-horizontal.swiper-container-css-mode {
+.swiper-horizontal.swiper-css-mode {
   > .swiper-wrapper {
     scroll-snap-type: x mandatory;
   }
 }
-.swiper-container-vertical.swiper-container-css-mode {
+.swiper-vertical.swiper-css-mode {
   > .swiper-wrapper {
     scroll-snap-type: y mandatory;
   }

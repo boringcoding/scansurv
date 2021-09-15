@@ -15,7 +15,7 @@ export const NavLink = tw.a`${mutualLinkStyles} text-black font-bold fontSize[1r
 export const DropdownWrapper = styled.ul`
   ${tw`invisible absolute bg-gray-800 bg-opacity-100 my-0 z-10 top-full left-0 mdmax:(left-1/2! transform! -translate-x-1/2! bg-white)`}
   & ul {
-    ${tw`mdmin:(top-0 left-full) mdmax:(left-1/2 top-full)`}
+    ${tw`mdmin:(top-0 left-full) mdmax:(left-1/2 top-full width[120%] bg-gray-300)`}
   }
   & a {
     ${tw`${dropdownLinkStyles} mdmax:(text-gray-600)`}

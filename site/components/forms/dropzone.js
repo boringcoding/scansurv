@@ -18,6 +18,19 @@ const DropzoneWrapper = styled.div`
   ]}
 `
 
+const filereader = file => {
+  const reader = new FileReader()
+
+  reader.onabort = () => console.log("file reading was aborted")
+  reader.onerror = () => console.log("file reading has failed")
+  reader.onload = () => {
+    // Do whatever you want with the file contents
+    const binaryStr = reader.result
+    console.log(binaryStr)
+  }
+  reader.readAsArrayBuffer(file)
+}
+
 const Dropzone = rhfProps => {
   const {
     acceptedFiles,
@@ -34,6 +47,7 @@ const Dropzone = rhfProps => {
         acceptedFiles.map(file =>
           Object.assign(file, {
             preview: URL.createObjectURL(file),
+            fileReader: filereader(file),
           })
         )
       )

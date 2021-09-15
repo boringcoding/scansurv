@@ -4,6 +4,8 @@ import Image from "next/image"
 import ImageWrapper from "@/components/imageWrapper"
 import Lightbox from "@/components/lightbox"
 
+import { useIsMdMin } from "@/utils/responsive"
+
 const SingleImage = ({
   imageLightbox,
   image,
@@ -11,6 +13,7 @@ const SingleImage = ({
   imageHeight,
   priority,
 }) => {
+  const isMdMin = useIsMdMin()
   return (
     <Lightbox enable={imageLightbox}>
       <ImageWrapper
@@ -23,7 +26,9 @@ const SingleImage = ({
           <Image
             src={image[0].url}
             alt={image[0].alternativeText}
-            layout="fill"
+            width={image[0].width}
+            height={image[0].height}
+            layout={isMdMin ? "fill" : "responsive"}
             objectFit="cover"
             priority={priority}
           />

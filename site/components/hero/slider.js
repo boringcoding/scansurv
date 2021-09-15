@@ -10,7 +10,7 @@ import { H1 } from "../text"
 import useHasMounted from "@/utils/mounted"
 
 const SliderWrapper = styled.div`
-  ${tw`relative overflow-hidden`}
+  ${tw`relative overflow-hidden paddingTop[50px]`}
   & .swiper-slide {
     height: auto;
   }

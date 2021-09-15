@@ -1,10 +1,6 @@
-/**
- * @see https://prateeksurana.me/blog/integrating-recaptcha-with-next/
- * @param {*} req
- * @param {*} res
- * @returns
- */
 import fetch from "node-fetch"
+import fs from "fs"
+import { camelToCapSentence } from "@/utils/helpers"
 
 export default async function handler(req, res) {
   const { body, method } = req
@@ -30,32 +26,64 @@ export default async function handler(req, res) {
         }
       )
       const captchaValidation = await response.json()
-      /**
-       * The structure of response from the veirfy API is
-       * {
-       *  "success": true|false,
-       *  "challenge_ts": timestamp,  // timestamp of the challenge load (ISO format yyyy-MM-dd'T'HH:mm:ssZZ)
-       *  "hostname": string,         // the hostname of the site where the reCAPTCHA was solved
-       *  "error-codes": [...]        // optional
-        }
-       */
       if (captchaValidation.success) {
-        const sendToStrapi = await fetch(
-          `${process.env.CMS_API_URL}/form-submissions`,
-          {
-            body: JSON.stringify({
-              formName: formName,
-              data: formData,
-            }),
-            headers: {
-              "Content-Type": "application/json",
-            },
-            method: "POST",
+        const nodemailer = require("nodemailer")
+        const mg = require("nodemailer-mailgun-transport")
+
+        var htmlBody = ""
+        for (const [key, value] of Object.entries(formData.form)) {
+          if (key !== "files") {
+            htmlBody += `<p><b>${camelToCapSentence(key)}: </b>${value}</p>`
           }
+        }
+
+        /**
+         * Initialise Mailgun transporter
+         */
+        const nodemailerMailgun = nodemailer.createTransport(
+          mg({
+            auth: {
+              api_key: process.env.MAILGUN_API_KEY,
+              domain: process.env.MAILGUN_DOMAIN,
+            },
+            host: process.env.MAILGUN_HOST,
+          })
         )
-        // TODO - Do something with response from Strapi if error
-        // const responseFromStrapi = await sendToStrapi
-        // console.log(responseFromStrapi)
+
+        /**
+         * If any attachments, add them
+         */
+        // let attachments = []
+        // if (formData.form?.files) {
+        //   let buffer = fs.readFileSync(formData.form.files[0].path)
+        //   attachments.push(fs.createReadStream(buffer))
+        // }
+        // console.log(attachments)
+        console.log(formData.form.files[0])
+
+        /**
+         * Send the email
+         */
+        // await new Promise((resolve, reject) => {
+        //   nodemailerMailgun.sendMail(
+        //     {
+        //       from: process.env.MAILGUN_EMAIL_FROM,
+        //       to: process.env.MAILGUN_EMAIL_TO,
+        //       subject: "New form submission",
+        //       html: htmlBody,
+        //       attachments: attachments,
+        //     },
+        //     (err, info) => {
+        //       if (err) {
+        //         console.log(`Error: ${err}`)
+        //         reject(err)
+        //       } else {
+        //         console.log(`Response: ${info}`)
+        //         resolve(info)
+        //       }
+        //     }
+        //   )
+        // })
 
         // Return 200 if everything is successful
         return res.status(200).send("OK")

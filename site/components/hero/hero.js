@@ -14,7 +14,7 @@ import Container from "@/components/container"
 import { H1 } from "../text"
 
 const HeroWrapper = styled.div`
-  ${tw`minHeight[500px] relative overflow-hidden`}
+  ${tw`minHeight[500px] relative overflow-hidden paddingTop[50px]`}
   & .swiper {
     ${tw`h-full`}
   }

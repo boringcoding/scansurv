@@ -41,11 +41,11 @@ module.exports = {
       center: true,
       padding: {
         DEFAULT: "1rem",
-        smmin: "2rem",
-        mdmin: "3rem",
-        lgmin: "4rem",
-        xlmin: "5rem",
-        "2xlmin": "6rem",
+        smmin: "1rem",
+        mdmin: "2rem",
+        lgmin: "2rem",
+        xlmin: "2rem",
+        "2xlmin": "2rem",
       },
     },
 
@@ -88,7 +88,7 @@ module.exports = {
       headingSm: ["1.75rem", "2.25rem"],
       headingBase: ["2rem", "2.5rem"],
       headingLg: ["2.5rem", "3rem"],
-      headingXl: ["3.5rem", "4rem"],
+      headingXl: ["4rem", "4.5rem"],
     },
 
     fontWeight: {

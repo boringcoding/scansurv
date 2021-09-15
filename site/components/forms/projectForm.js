@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useForm } from "react-hook-form"
+import { Controller, useForm } from "react-hook-form"
 import "twin.macro"
 import GD from "@/data/global-data.json"
 
@@ -17,12 +17,11 @@ import {
 } from "@/components/forms/@sc"
 import Dropzone from "@/components/forms/dropzone"
 import FormTemplate from "@/components/forms/formTemplate"
-import AutocompleteAddress from "@/components/forms/autocompleteAddress"
 import Image from "next/image"
 import { H2 } from "../text"
 
 export default function ProjectForm() {
-  const { register, handleSubmit, getValues, reset, formState } = useForm()
+  const formProps = useForm()
 
   const [surveyControlAndDatum, setSurveyControlAndDatum] = useState(false)
   const [positionsLocalStations, setPositionsLocalStations] = useState(false)
@@ -71,10 +70,10 @@ export default function ProjectForm() {
           </p>
         </div>
         <FormTemplate
-          handleSubmit={handleSubmit}
-          getValues={getValues}
-          reset={reset}
-          formState={formState}
+          handleSubmit={formProps.handleSubmit}
+          getValues={formProps.getValues}
+          reset={formProps.reset}
+          formState={formProps.formState}
           formName="Project form"
         >
           <div tw="w-1/2">
@@ -83,16 +82,47 @@ export default function ProjectForm() {
                 Project Address (inc Postcode)
                 <RequiredAsterix />
               </Label>
-              <AutocompleteAddress
-                placeholder="Address where scan is required"
-                // REGISTERED AUTOCOMPLETE FIELD AS REQUIRED IN AUTOCOMPLETE.js
-                // {...register("form.projectAddress", { required: true })}
-              />
-              {/* {formState.errors.form?.projectAddress && (
-          <ErrorMessage>
-            Please provide the project address (inc postcode)
-          </ErrorMessage>
-        )} */}
+              <InputWrapper>
+                <Input
+                  type="text"
+                  placeholder="Address line 1 *"
+                  {...formProps.register("form.line1", { required: true })}
+                />
+                {formProps.formState.errors.form?.line1 && (
+                  <ErrorMessage>Please enter an address</ErrorMessage>
+                )}
+              </InputWrapper>
+              <InputWrapper>
+                <Input
+                  type="text"
+                  placeholder="Address line 2"
+                  {...formProps.register("form.line2")}
+                />
+              </InputWrapper>
+              <InputWrapper>
+                <Input
+                  type="text"
+                  placeholder="Town / City"
+                  {...formProps.register("form.city")}
+                />
+              </InputWrapper>
+              <InputWrapper>
+                <Input
+                  type="text"
+                  placeholder="County"
+                  {...formProps.register("form.county")}
+                />
+              </InputWrapper>
+              <InputWrapper>
+                <Input
+                  type="text"
+                  placeholder="Postcode *"
+                  {...formProps.register("form.postcode", { required: true })}
+                />
+                {formProps.formState.errors.form?.postcode && (
+                  <ErrorMessage>Please enter a postcode</ErrorMessage>
+                )}
+              </InputWrapper>
             </InputWrapper>
           </div>
 
@@ -101,7 +131,7 @@ export default function ProjectForm() {
             <Input
               type="text"
               placeholder="Job Number"
-              {...register("form.jobNumber")}
+              {...formProps.register("form.jobNumber")}
             />
           </InputWrapper>
 
@@ -114,9 +144,9 @@ export default function ProjectForm() {
               <Input
                 type="text"
                 placeholder="Enter your company name"
-                {...register("form.companyName", { required: true })}
+                {...formProps.register("form.companyName", { required: true })}
               />
-              {formState.errors.form?.companyName && (
+              {formProps.formState.errors.form?.companyName && (
                 <ErrorMessage>Please enter your company name</ErrorMessage>
               )}
             </InputWrapper>
@@ -129,9 +159,9 @@ export default function ProjectForm() {
               <Input
                 type="text"
                 placeholder="Enter your name"
-                {...register("form.name", { required: true })}
+                {...formProps.register("form.name", { required: true })}
               />
-              {formState.errors.form?.name && (
+              {formProps.formState.errors.form?.name && (
                 <ErrorMessage>Please enter your name</ErrorMessage>
               )}
             </InputWrapper>
@@ -144,9 +174,9 @@ export default function ProjectForm() {
               <Input
                 type="email"
                 placeholder="Enter your e-mail address"
-                {...register("form.email", { required: true })}
+                {...formProps.register("form.email", { required: true })}
               />
-              {formState.errors.form?.email && (
+              {formProps.formState.errors.form?.email && (
                 <ErrorMessage>
                   Please enter an email address we can contact you on
                 </ErrorMessage>
@@ -155,15 +185,15 @@ export default function ProjectForm() {
 
             <InputWrapper>
               <Label>
-                Phone Number
+                Phone
                 <RequiredAsterix />
               </Label>
               <Input
                 type="number"
                 placeholder="Enter your contact phone number"
-                {...register("form.phone", { required: true })}
+                {...formProps.register("form.phone", { required: true })}
               />
-              {formState.errors.form?.phone && (
+              {formProps.formState.errors.form?.phone && (
                 <ErrorMessage>
                   Please give us a phone number we can contact you on
                 </ErrorMessage>
@@ -179,9 +209,9 @@ export default function ProjectForm() {
             <Input
               type="text"
               placeholder="Enter your project name"
-              {...register("form.projectName", { required: true })}
+              {...formProps.register("form.projectName", { required: true })}
             />
-            {formState.errors.form?.projectName && (
+            {formProps.formState.errors.form?.projectName && (
               <ErrorMessage>Please enter your project name</ErrorMessage>
             )}
           </InputWrapper>
@@ -193,9 +223,11 @@ export default function ProjectForm() {
             </Label>
             <TextArea
               placeholder="Outline your 3D laser scan requirements"
-              {...register("form.message", { required: true })}
+              {...formProps.register("form.surveyRequirements", {
+                required: true,
+              })}
             />
-            {formState.errors.form?.message && (
+            {formProps.formState.errors.form?.surveyRequirements && (
               <ErrorMessage>
                 Please provide some details about your enquiry
               </ErrorMessage>
@@ -205,10 +237,37 @@ export default function ProjectForm() {
           <InputWrapper>
             <Label>Site Access</Label>
             <Checkboxes>
-              <Checkbox value="Is an induction required for site access?" />
-              <Checkbox value="Site PPE requirements?" />
-              <Checkbox value="Permit to work required?" />
-              <Checkbox value="Risk assessment required?" />
+              {/* <Controller
+                control={formProps.control}
+                name="form.siteAccessInduction"
+                render={props => (
+                  <Checkbox
+                    label="Is an induction required for site access?"
+                    value={props.field.value ? props.field.value : ""}
+                    onChange={e => props.field.onChange(e)}
+                  />
+                )}
+              /> */}
+              <Checkbox
+                label="Is an induction required for site access?"
+                name="form.siteAccessInduction"
+                formProps={formProps}
+              />
+              <Checkbox
+                label="Site PPE requirements?"
+                name="form.siteAccessPPE"
+                formProps={formProps}
+              />
+              <Checkbox
+                label="Permit to work required?"
+                name="form.siteAccessPermit"
+                formProps={formProps}
+              />
+              <Checkbox
+                label="Risk assessment required?"
+                name="form.siteAccessRiskAssessment"
+                formProps={formProps}
+              />
             </Checkboxes>
           </InputWrapper>
 
@@ -219,16 +278,16 @@ export default function ProjectForm() {
             </Label>
             <Radios>
               <Radio
-                value="Yes"
-                name="Survey Control &amp; Datum - Does The Survey Require A Global OS
-          Datum &amp; Level?"
+                label="Yes"
                 onClick={() => setSurveyControlAndDatum(true)}
+                name="form.surveyControlRequireGlobalOS"
+                formProps={formProps}
               />
               <Radio
-                value="No"
-                name="Survey Control &amp; Datum - Does The Survey Require A Global OS
-          Datum &amp; Level?"
+                label="No"
                 onClick={() => setSurveyControlAndDatum(false)}
+                name="form.surveyControlRequireGlobalOS"
+                formProps={formProps}
               />
             </Radios>
           </InputWrapper>
@@ -242,14 +301,16 @@ export default function ProjectForm() {
                 </Label>
                 <Radios>
                   <Radio
-                    name="Are the positions of local survey stations available for use"
-                    value="Yes"
+                    label="Yes"
                     onClick={() => setPositionsLocalStations(true)}
+                    name="form.positionsLocalSurveyStationsAvailable"
+                    formProps={formProps}
                   />
                   <Radio
-                    name="Are the positions of local survey stations available for use"
-                    value="No"
+                    label="No"
                     onClick={() => setPositionsLocalStations(false)}
+                    name="form.positionsLocalSurveyStationsAvailable"
+                    formProps={formProps}
                   />
                 </Radios>
               </InputWrapper>
@@ -257,7 +318,10 @@ export default function ProjectForm() {
               {positionsLocalStations && (
                 <InputWrapper>
                   <Label>Survey Station Details</Label>
-                  <TextArea placeholder="Enter survey station details" />
+                  <TextArea
+                    {...formProps.register("form.surveyStationDetails")}
+                    placeholder="Enter survey station details"
+                  />
                 </InputWrapper>
               )}
             </>
@@ -266,36 +330,78 @@ export default function ProjectForm() {
           <InputWrapper>
             <Label>Point Cloud Density</Label>
             <Radios>
-              <Radio name="Point Cloud Density" value="2mm" />
-              <Radio name="Point Cloud Density" value="5mm" />
-              <Radio name="Point Cloud Density" value="10mm" />
-              <Radio name="Point Cloud Density" value="20mm" />
+              <Radio
+                label="2mm"
+                name="form.pointCloudDensity"
+                formProps={formProps}
+              />
+              <Radio
+                label="5mm"
+                name="form.pointCloudDensity"
+                formProps={formProps}
+              />
+              <Radio
+                label="10mm"
+                name="form.pointCloudDensity"
+                formProps={formProps}
+              />
+              <Radio
+                label="20mm"
+                name="form.pointCloudDensity"
+                formProps={formProps}
+              />
             </Radios>
           </InputWrapper>
 
           <InputWrapper>
             <Label>Colour Requirements</Label>
             <Radios>
-              <Radio name="Colour Requirements" value="Monochrome (Internal)" />
-              <Radio name="Colour Requirements" value="Colour (Internal)" />
-              <Radio name="Colour Requirements" value="Monochrome (External)" />
-              <Radio name="Colour Requirements" value="Colour (External)" />
+              <Radio
+                name="form.colourRequirements"
+                formProps={formProps}
+                label="Monochrome (Internal)"
+              />
+              <Radio
+                name="form.colourRequirements"
+                formProps={formProps}
+                label="Colour (Internal)"
+              />
+              <Radio
+                name="form.colourRequirements"
+                formProps={formProps}
+                label="Monochrome (External)"
+              />
+              <Radio
+                name="form.colourRequirements"
+                formProps={formProps}
+                label="Colour (External)"
+              />
             </Radios>
           </InputWrapper>
 
           <InputWrapper>
             <Label>Survey Output Requirements</Label>
             <Radios>
-              <Radio name="Survey Output Requirements" value="Raw Scans" />
               <Radio
-                name="Survey Output Requirements"
-                value="Stitched / Registered Scan Data"
+                name="form.surveyOutputRequirements"
+                formProps={formProps}
+                label="Raw Scans"
               />
               <Radio
-                name="Survey Output Requirements"
-                value="Clipped Scan Data"
+                name="form.surveyOutputRequirements"
+                formProps={formProps}
+                label="Stitched / Registered Scan Data"
               />
-              <Radio name="Survey Output Requirements" value="3D Image File" />
+              <Radio
+                name="form.surveyOutputRequirements"
+                formProps={formProps}
+                label="Clipped Scan Data"
+              />
+              <Radio
+                name="form.surveyOutputRequirements"
+                formProps={formProps}
+                label="3D Image File"
+              />
             </Radios>
           </InputWrapper>
 
@@ -303,33 +409,39 @@ export default function ProjectForm() {
             <Label>Exported File Format Required</Label>
             <Radios>
               <Radio
-                name="Exported File Format Required"
-                value=".E57"
+                name="form.exportedFileFormat"
+                formProps={formProps}
+                label=".E57"
                 onClick={() => setDifferentFileFormat(false)}
               />
               <Radio
-                name="Exported File Format Required"
-                value=".RCP"
+                name="form.exportedFileFormat"
+                formProps={formProps}
+                label=".RCP"
                 onClick={() => setDifferentFileFormat(false)}
               />
               <Radio
-                name="Exported File Format Required"
-                value=".DWG"
+                name="form.exportedFileFormat"
+                formProps={formProps}
+                label=".DWG"
                 onClick={() => setDifferentFileFormat(false)}
               />
               <Radio
-                name="Exported File Format Required"
-                value=".RVT"
+                name="form.exportedFileFormat"
+                formProps={formProps}
+                label=".RVT"
                 onClick={() => setDifferentFileFormat(false)}
               />
               <Radio
-                name="Exported File Format Required"
-                value=".PTS"
+                name="form.exportedFileFormat"
+                formProps={formProps}
+                label=".PTS"
                 onClick={() => setDifferentFileFormat(false)}
               />
               <Radio
-                name="Exported File Format Required"
-                value="OTHER"
+                name="form.exportedFileFormat"
+                formProps={formProps}
+                label="OTHER"
                 onClick={() => setDifferentFileFormat(true)}
               />
             </Radios>
@@ -341,18 +453,41 @@ export default function ProjectForm() {
                 If a different file format is required, please provide the
                 details below
               </Label>
-              <TextArea placeholder="Enter file format details" />
+              <TextArea
+                {...formProps.register("form.differentFileFormatDetails")}
+                placeholder="Enter file format details"
+              />
             </InputWrapper>
           )}
 
           <InputWrapper tw="mb-5">
             <Label>Please provide:</Label>
             <Checkboxes tw="flex-col">
-              <Checkbox value="A Google Earth map detailing the site and the extent of the survey required" />
-              <Checkbox value="Drawings and plans in PDF or AutoCAD format if possible to assist with the survey" />
-              <Checkbox value="Photographs to assist where possible to identify extent of survey" />
-              <Checkbox value="Redline drawing outling extent of the survey area" />
-              <Checkbox value="Any other relevant information" />
+              <Checkbox
+                label="A Google Earth map detailing the site and the extent of the survey required"
+                name="form.pleaseProvideGoogleEarth"
+                formProps={formProps}
+              />
+              <Checkbox
+                label="Drawings and plans in PDF or AutoCAD format if possible to assist with the survey"
+                name="form.pleaseProvideDrawingsAutocadFormat"
+                formProps={formProps}
+              />
+              <Checkbox
+                label="Photographs to assist where possible to identify extent of survey"
+                name="form.pleaseProvidePhotographs"
+                formProps={formProps}
+              />
+              <Checkbox
+                label="Redline drawing outling extent of the survey area"
+                name="form.pleaseProvideRedlineDrawing"
+                formProps={formProps}
+              />
+              <Checkbox
+                label="Any other relevant information"
+                name="form.pleaseProvideOtherInfo"
+                formProps={formProps}
+              />
             </Checkboxes>
           </InputWrapper>
 
@@ -360,10 +495,20 @@ export default function ProjectForm() {
             <Label>
               For any attachments or additional info, please upload it here
             </Label>
-            <Dropzone />
+            <Controller
+              control={formProps.control}
+              name="form.files"
+              render={rhfProps => <Dropzone {...rhfProps} />}
+            />
           </InputWrapper>
 
-          <input type="hidden" value={new Date()} />
+          <input
+            type="hidden"
+            {...formProps.register("form.date")}
+            value={new Date()}
+          />
+
+          <pre>{JSON.stringify(formProps.watch(), null, 2)}</pre>
         </FormTemplate>
       </div>
     </>

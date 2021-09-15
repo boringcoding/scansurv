@@ -16,7 +16,7 @@ export const ckEditorParseOptions = {
             autoPlay
             loop
             controls
-            playsInline
+            playsInline // necessary for autoplay in IOS
             controlsList="nodownload"
             tw="absolute top-0 left-0 w-full h-full"
             src="/Scan-House4.mp4"

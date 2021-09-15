@@ -124,3 +124,11 @@ export const slugify = string => {
     .replace(/^-+/, "") // Trim - from start of text
     .replace(/-+$/, "") // Trim - from end of text
 }
+
+/**
+ * Camelcase to capitalised sentence
+ */
+export const camelToCapSentence = text => {
+  const result = text.replace(/([A-Z])/g, " $1")
+  return result.charAt(0).toUpperCase() + result.slice(1)
+}

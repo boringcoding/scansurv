@@ -32,20 +32,22 @@ export const Checkboxes = tw.div`flex flex-wrap`
 /**
  * Checkbox
  *
- * @param {string} value
+ * @param {string} label
+ * @param {string} name  name to register with rhf
+ * @param {object} formProps the rhf formProps (useForm())
  * @param {*} ...other - Other values spread into input
  */
-export const Checkbox = ({ value, ...other }) => {
+export const Checkbox = ({ label, name, formProps, ...other }) => {
   return (
     <div tw="flex items-center mr-3 mb-1">
       <input
         type="checkbox"
         tw="mr-1"
-        id={slugify(value)}
-        value={value}
+        id={slugify(label)}
         {...other}
+        {...formProps.register(name)}
       />
-      <label htmlFor={slugify(value)}>{value}</label>
+      <label htmlFor={slugify(label)}>{label}</label>
     </div>
   )
 }
@@ -55,22 +57,23 @@ export const Radios = tw.div`flex flex-wrap`
 /**
  * Radio
  *
- * @param {string} name
- * @param {string} value
+ * @param {string} label
+ * @param {string} name  name to register with rhf
+ * @param {object} formProps the rhf formProps (useForm())
  * @param {*} ...other - Other values spread into input
  */
-export const Radio = ({ name, value, ...other }) => {
+export const Radio = ({ label, name, formProps, ...other }) => {
   return (
     <div tw="flex items-center mr-3 mb-1">
       <input
         type="radio"
         tw="mr-1"
-        id={slugify(value)}
-        value={value}
-        name={name}
+        value={label}
+        id={slugify(name + "-" + label)}
         {...other}
+        {...formProps.register(name)}
       />
-      <label htmlFor={slugify(value)}>{value}</label>
+      <label htmlFor={slugify(name + "-" + label)}>{label}</label>
     </div>
   )
 }
